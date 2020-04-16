@@ -16,7 +16,7 @@ IMAGE_INSTALL_DH_STM32MP1 = " \
 	gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
 	\
 	weston weston-init weston-examples kmscube \
-	piglit glmark2 vk-gl-cts iperf3 stress-ng \
+	piglit glmark2 vk-gl-cts iperf3 stress-ng ethtool \
 	\
 	nano \
 	"
