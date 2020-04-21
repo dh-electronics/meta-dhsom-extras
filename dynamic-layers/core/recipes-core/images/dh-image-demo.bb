@@ -18,7 +18,7 @@ IMAGE_INSTALL_DH_STM32MP1 = " \
 	weston weston-init weston-examples kmscube \
 	piglit glmark2 vk-gl-cts iperf3 stress-ng ethtool \
 	\
-	nano \
+	nano evtest \
 	"
 
 IMAGE_INSTALL_append_dh-stm32mp1-dhcom-pdk2 = " ${IMAGE_INSTALL_DH_STM32MP1} "
