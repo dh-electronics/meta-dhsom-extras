@@ -5,7 +5,7 @@ IMAGE_INSTALL_DH_STM32MP1_OE = " \
 	ttf-dejavu-serif \
 	ttf-dejavu-serif-condensed \
 	ttf-dejavu-common \
-	v4l-utils yavta libgpiod libiio \
+	v4l-utils yavta libgpiod-tools libiio \
 	packagegroup-tools-bluetooth \
 	pulseaudio-server pulseaudio-misc \
 	libusbgx linuxptp \
