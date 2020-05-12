@@ -7,7 +7,7 @@ inherit core-image
 IMAGE_INSTALL_DH_STM32MP1 = " \
 	kernel-modules u-boot-default-env libubootenv-bin \
 	ca-certificates iw dropbear iproute2 init-ifupdown \
-	i2c-tools canutils \
+	i2c-tools canutils systemd-conf \
 	libdrm mesa \
 	libegl-mesa libgbm libgles1-mesa libgles2-mesa \
 	libglapi mesa-megadriver devmem2 \
