@@ -1,4 +1,4 @@
-IMAGE_INSTALL_DH_STM32MP1_OE = " \
+IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	ttf-dejavu-sans \
 	ttf-dejavu-sans-mono \
 	ttf-dejavu-sans-condensed \
@@ -11,6 +11,3 @@ IMAGE_INSTALL_DH_STM32MP1_OE = " \
 	libusbgx linuxptp \
 	glmark2 \
 	"
-
-IMAGE_INSTALL_append_dh-stm32mp1-dhcom-pdk2 = " ${IMAGE_INSTALL_DH_STM32MP1_OE} "
-IMAGE_INSTALL_append_dh-stm32mp1-dhcor-avenger96 = " ${IMAGE_INSTALL_DH_STM32MP1_OE} "

@@ -4,7 +4,7 @@ LICENSE = "MIT"
 
 inherit core-image
 
-IMAGE_INSTALL_DH_STM32MP1 = " \
+IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	kernel-modules u-boot-default-env libubootenv-bin \
 	ca-certificates iw dropbear iproute2 init-ifupdown \
 	i2c-tools canutils systemd-conf \
@@ -21,9 +21,6 @@ IMAGE_INSTALL_DH_STM32MP1 = " \
 	nano evtest \
 	"
 
-IMAGE_INSTALL_append_dh-stm32mp1-dhcom-pdk2 = " ${IMAGE_INSTALL_DH_STM32MP1} "
-IMAGE_INSTALL_append_dh-stm32mp1-dhcor-avenger96 = " ${IMAGE_INSTALL_DH_STM32MP1} "
-
-IMAGE_FEATURES_DH_STM32MP1 = "dev-pkgs tools-sdk tools-debug tools-profile debug-tweaks"
-IMAGE_FEATURES_append_dh-stm32mp1-dhcom-pdk2 = " ${IMAGE_FEATURES_DH_STM32MP1} "
-IMAGE_FEATURES_append_dh-stm32mp1-dhcor-avenger96 = " ${IMAGE_FEATURES_DH_STM32MP1} "
+IMAGE_FEATURES_append_dh-stm32mp1-dhsom = " \
+	dev-pkgs tools-sdk tools-debug tools-profile debug-tweaks \
+	"
