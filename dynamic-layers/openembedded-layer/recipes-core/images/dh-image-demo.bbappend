@@ -9,5 +9,5 @@ IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	packagegroup-tools-bluetooth \
 	pulseaudio-server pulseaudio-misc \
 	libusbgx linuxptp \
-	glmark2 \
+	glmark2 memtester \
 	"
