@@ -18,7 +18,7 @@ IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	weston weston-init weston-examples kmscube \
 	piglit iperf3 stress-ng ethtool \
 	\
-	nano evtest minicom \
+	nano evtest minicom screen \
 	"
 
 IMAGE_FEATURES_append_dh-stm32mp1-dhsom = " \
