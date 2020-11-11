@@ -2,6 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 PACKAGECONFIG_append_dh-stm32mp1-dhsom = " \
 	examples eglfs linuxfb gles2 kms gbm fontconfig freetype accessibility \
+	xkbcommon \
 	"
 
 SRC_URI_append_dh-stm32mp1-dhsom = " \
