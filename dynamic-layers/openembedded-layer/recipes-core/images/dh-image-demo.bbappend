@@ -6,7 +6,7 @@ IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	ttf-dejavu-serif-condensed \
 	ttf-dejavu-common \
 	v4l-utils yavta libgpiod-tools libiio \
-	packagegroup-tools-bluetooth \
+	packagegroup-tools-bluetooth glibc-gconv-utf-16 glibc-gconv-utf-32 \
 	pulseaudio-server pulseaudio-misc \
 	libusbgx linuxptp \
 	glmark2 memtester \
