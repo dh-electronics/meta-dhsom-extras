@@ -12,4 +12,5 @@ IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	glmark2 memtester \
 	dstat \
 	libqmi libmbim \
+	uhubctl \
 	"
