@@ -41,6 +41,7 @@ Additional optional layers handled by means of dynamic layers:
 * git://github.com/OSSystems/meta-browser.git				(branch: master)
 * git://git.yoctoproject.org/meta-security				(branch: dunfell)
 * git://github.com/Igalia/meta-webkit.git				(branch: dunfell)
+* git://github.com/cazfi/meta-games.git					(branch: master)
 
 With all the source artifacts in place, proceed with setting up the build
 using oe-init-build-env as specified in the Yocto Project wiki.
@@ -62,6 +63,7 @@ BBLAYERS ?= " \
   /path/to/OE/meta-browser/meta-chromium \
   /path/to/OE/meta-security \
   /path/to/OE/meta-webkit \
+  /path/to/OE/meta-games \
   /path/to/OE/meta-mainline-common \
   /path/to/OE/meta-mainline-graphics \
   /path/to/OE/meta-dhsom-imx-bsp \
@@ -163,6 +165,7 @@ BBLAYERS ?= " \
 	/path/to/OE/meta-browser/meta-chromium \
 	/path/to/OE/meta-security \
 	/path/to/OE/meta-webkit \
+	/path/to/OE/meta-games \
 	/path/to/OE/meta-mainline-common \
 	/path/to/OE/meta-mainline-graphics \
 	/path/to/OE/meta-dhsom-imx-bsp \
