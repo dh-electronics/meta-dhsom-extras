@@ -1,7 +1,2 @@
-PACKAGECONFIG_dh-stm32mp1-dhsom = " \
-	wayland-client \
-	wayland-server \
-	wayland-egl \
-	wayland-drm-egl-server-buffer \
-	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcomposite-egl', '', d)} \
-	"
+PACKAGECONFIG_append_dh-stm32mp1-dhsom = " wayland-drm-egl-server-buffer "
+PACKAGECONFIG_remove_dh-stm32mp1-dhsom = "xcomposite-glx"
