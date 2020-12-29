@@ -16,6 +16,7 @@ IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
 	\
 	weston weston-init weston-examples kmscube \
+	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland', '', d)} \
 	piglit iperf3 stress-ng ethtool \
 	\
 	nano evtest minicom screen \
