@@ -13,4 +13,5 @@ IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
 	dstat htop \
 	libqmi libmbim \
 	uhubctl \
+	cpufrequtils \
 	"
