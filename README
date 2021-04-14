@@ -9,7 +9,7 @@ This layer depends on:
   branch: dunfell
   layers: meta
 
-  URI: ssh://git@gitlab.denx.de/dh-electronics/meta-dhsom-stm32-bsp.git
+  URI: https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git
   branch: dunfell-3.1
 
 Building image
@@ -27,8 +27,8 @@ location of the metalayers.
 
   https://source.denx.de/denx/meta-mainline-common.git			dunfell-3.1
   https://source.denx.de/denx/meta-mainline-graphics.git		dunfell-3.1
-  ssh://git@gitlab.denx.de/dh-electronics/meta-dhsom-stm32-bsp.git	dunfell-3.1
-  ssh://git@gitlab.denx.de/dh-electronics/meta-dhsom-stm32-extras.git	dunfell-3.1
+  https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		dunfell-3.1
+  https://github.com/dh-electronics/meta-dhsom-stm32-extras.git		dunfell-3.1
   git://git.yoctoproject.org/poky					dunfell
   git://git.openembedded.org/meta-python2				dunfell
   git://github.com/openembedded/meta-openembedded.git			dunfell
