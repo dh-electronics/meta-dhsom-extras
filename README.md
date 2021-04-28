@@ -1,44 +1,48 @@
-This layer provides BSP demo extras for Mainline STM32MP1 platform.
+OpenEmbedded demo extras layer for DH electronics STM32MP1 platforms
+====================================================================
+
+This layer provides demo extras and examples for
+DH electronics STM32MP1 platforms.
 
 Dependencies
-============
+------------
 
 This layer depends on:
 
-  URI: git://git.yoctoproject.org/poky
-  branch: dunfell
-  layers: meta
+* URI: git://git.yoctoproject.org/poky
+  - branch: dunfell
+  - layers: meta
 
-  URI: https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git
-  branch: dunfell-3.1
+* URI: https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git
+  - branch: dunfell-3.1
 
 Building image
-==============
+--------------
 
 A good starting point for setting up the build environment is is the official
 Yocto Project wiki.
 
-  https://www.yoctoproject.org/docs/3.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html
+* https://www.yoctoproject.org/docs/3.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html
 
 Before attempting the build, the following metalayer git repositories shall
 be cloned into a location accessible to the build system and a branch listed
 below shall be checked out. The examples below will use /path/to/OE/ as a
 location of the metalayers.
 
-  git://git.yoctoproject.org/poky					dunfell
-  https://source.denx.de/denx/meta-mainline-common.git			dunfell-3.1
-  https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		dunfell-3.1
-  https://github.com/dh-electronics/meta-dhsom-stm32-extras.git		dunfell-3.1
+* git://git.yoctoproject.org/poky					(branch: dunfell)
+* https://source.denx.de/denx/meta-mainline-common.git			(branch: dunfell-3.1)
+* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: dunfell-3.1)
+* https://github.com/dh-electronics/meta-dhsom-stm32-extras.git		(branch: dunfell-3.1)
 
 Additional optional layers handled by means of dynamic layers:
-  https://gitlab.denx.de/denx/meta-mainline-graphics.git		dunfell-3.1
-  git://github.com/openembedded/meta-openembedded.git			dunfell
-  git://git.openembedded.org/meta-python2				dunfell
-  git://github.com/meta-qt5/meta-qt5.git				dunfell
-  git://github.com/kraj/meta-clang					dunfell
-  git://github.com/OSSystems/meta-browser.git				master
-  git://git.yoctoproject.org/meta-security				dunfell
-  git://github.com/Igalia/meta-webkit.git				dunfell
+* https://source.denx.de/denx/meta-mainline-graphics.git		(branch: dunfell-3.1)
+* git://github.com/openembedded/meta-openembedded.git			(branch: dunfell)
+* git://git.openembedded.org/meta-python2				(branch: dunfell)
+* git://github.com/meta-qt5/meta-qt5.git				(branch: dunfell)
+* git://github.com/kraj/meta-clang					(branch: dunfell)
+* git://github.com/OSSystems/meta-browser.git				(branch: master)
+* git://git.yoctoproject.org/meta-security				(branch: dunfell)
+* git://github.com/Igalia/meta-webkit.git				(branch: dunfell)
 
 With all the source artifacts in place, proceed with setting up the build
 using oe-init-build-env as specified in the Yocto Project wiki.
@@ -46,35 +50,43 @@ using oe-init-build-env as specified in the Yocto Project wiki.
 In addition to the content in the wiki, the aforementioned metalayers shall
 be referenced in bblayers.conf in this order:
 
-  BBLAYERS ?= " \
-    /path/to/OE/poky/meta \
-    /path/to/OE/meta-python2 \
-    /path/to/OE/meta-openembedded/meta-oe \
-    /path/to/OE/meta-openembedded/meta-networking \
-    /path/to/OE/meta-openembedded/meta-perl \
-    /path/to/OE/meta-openembedded/meta-python \
-    /path/to/OE/meta-openembedded/meta-webserver \
-    /path/to/OE/meta-qt5 \
-    /path/to/OE/meta-clang \
-    /path/to/OE/meta-browser/meta-chromium \
-    /path/to/OE/meta-security \
-    /path/to/OE/meta-webkit \
-    /path/to/OE/meta-mainline-common \
-    /path/to/OE/meta-mainline-graphics \
-    /path/to/OE/meta-dhsom-stm32-bsp \
-    /path/to/OE/meta-dhsom-stm32-extras \
-    "
+```
+BBLAYERS ?= " \
+  /path/to/OE/poky/meta \
+  /path/to/OE/meta-python2 \
+  /path/to/OE/meta-openembedded/meta-oe \
+  /path/to/OE/meta-openembedded/meta-networking \
+  /path/to/OE/meta-openembedded/meta-perl \
+  /path/to/OE/meta-openembedded/meta-python \
+  /path/to/OE/meta-openembedded/meta-webserver \
+  /path/to/OE/meta-qt5 \
+  /path/to/OE/meta-clang \
+  /path/to/OE/meta-browser/meta-chromium \
+  /path/to/OE/meta-security \
+  /path/to/OE/meta-webkit \
+  /path/to/OE/meta-mainline-common \
+  /path/to/OE/meta-mainline-graphics \
+  /path/to/OE/meta-dhsom-stm32-bsp \
+  /path/to/OE/meta-dhsom-stm32-extras \
+  "
+```
 
 The following specifics should be placed into local.conf:
 
-  MACHINE = "dh-stm32mp1-dhcom-pdk2"
-  DISTRO = "dhlinux"
+```
+MACHINE = "dh-stm32mp1-dhcom-pdk2"
+DISTRO = "dhlinux"
+```
 
-Note that MACHINE must be either "dh-stm32mp1-dhcom-pdk2" or
-"dh-stm32mp1-dhcom-picoitx" or "dh-stm32mp1-dhcom-drc02" or
-"dh-stm32mp1-dhcor-avenger96". Adapt the suffixes of all the
-files and names of directories further in this documentation
-according to MACHINE.
+Note that MACHINE must be either of:
+
+* dh-stm32mp1-dhcom-drc02
+* dh-stm32mp1-dhcom-pdk2
+* dh-stm32mp1-dhcom-picoitx
+* dh-stm32mp1-dhcor-avenger96
+
+Adapt the suffixes of all the files and names of directories further in
+this documentation according to MACHINE.
 
 Both local.conf and bblayers.conf are included verbatim in full at the end
 of this readme.
@@ -82,22 +94,31 @@ of this readme.
 Once the configuration is complete, a full demo system image suitable for
 evaluation can be built using:
 
-  $ bitbake dh-image-demo
+```
+$ bitbake dh-image-demo
+```
 
 Once the build completes, the images are available in:
 
-  tmp/deploy/images/dh-stm32mp1-dhcom-pdk2/
+```
+tmp/deploy/images/dh-stm32mp1-dhcom-pdk2/
+```
 
 The SD card image is specifically in:
 
-  dh-image-demo-dh-stm32mp1-dhcom-pdk2.wic
+```
+dh-image-demo-dh-stm32mp1-dhcom-pdk2.wic
+```
 
 And shall be written to the SD card using dd:
 
-  $ dd if=dh-image-demo-dh-stm32mp1-dhcom-pdk2.wic of=/dev/sdX bs=8M
+```
+$ dd if=dh-image-demo-dh-stm32mp1-dhcom-pdk2.wic of=/dev/sdX bs=8M
+```
 
 Example local.conf
-==================
+------------------
+```
 MACHINE = "dh-stm32mp1-dhcom-pdk2"
 DL_DIR = "/path/to/OE/downloads"
 DISTRO ?= "dhlinux"
@@ -121,9 +142,11 @@ BB_NUMBER_THREADS = "12"
 PARALLEL_MAKE = "-j 12"
 INHERIT += "buildhistory"
 BUILDHISTORY_COMMIT = "1"
+```
 
 Example bblayers.conf
-=====================
+---------------------
+```
 # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
 POKY_BBLAYERS_CONF_VERSION = "2"
@@ -149,3 +172,4 @@ BBLAYERS ?= " \
 	/path/to/OE/meta-dhsom-stm32-bsp \
 	/path/to/OE/meta-dhsom-stm32-extras \
 	"
+```
