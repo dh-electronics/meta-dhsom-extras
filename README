@@ -149,7 +149,3 @@ BBLAYERS ?= " \
 	/path/to/OE/meta-dhsom-stm32-bsp \
 	/path/to/OE/meta-dhsom-stm32-extras \
 	"
-
-BBLAYERS_NON_REMOVABLE ?= " \
-	/path/to/OE/poky/meta \
-	"
