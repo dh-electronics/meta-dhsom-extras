@@ -1,0 +1,5 @@
+#!/bin/sh -e
+D=`date '+%Y%m%d%H%M%S'`
+P="/etnaviv-${D}.devcoredump"
+cat "$1/data" > "${P}"
+xz -9e "${P}"
