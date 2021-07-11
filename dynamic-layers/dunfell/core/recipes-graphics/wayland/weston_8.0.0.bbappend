@@ -1,11 +1,5 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-# Kiosk shell
-python __anonymous() {
-    if ("dh-stm32mp1-dhsom" in d.getVar("MACHINEOVERRIDES", True).split(":")):
-        d.setVarFlag('PACKAGECONFIG', "shell-kiosk", "-Dshell-kiosk=true,-Dshell-kiosk=false")
-}
-
 SRC_URI_append_dh-stm32mp1-dhsom = " \
 	file://0001-kiosk-shell-Introduce-kiosk-fullscreen-shell-for-des.patch \
 	file://0002-kiosk-shell-Keep-track-of-seats-created-and-destroy-.patch \
@@ -16,5 +10,3 @@ SRC_URI_append_dh-stm32mp1-dhsom = " \
 	file://0007-kiosk-shell-Embed-keyboard-focus-activation-code.patch \
 	file://0008-libweston-Rename-weston_view_activate-to-weston_view.patch \
 	"
-
-PACKAGECONFIG_append_dh-stm32mp1-dhsom = " shell-kiosk "
