@@ -5,7 +5,7 @@ LICENSE = "MIT"
 inherit core-image
 
 IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " \
-	kernel-modules u-boot-default-env libubootenv-bin \
+	kernel-modules u-boot-default-env libubootenv-bin mtd-utils \
 	ca-certificates iw dropbear iproute2 init-ifupdown \
 	i2c-tools canutils systemd-conf openssl-engines rng-tools \
 	libdrm mesa \
