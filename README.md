@@ -1,8 +1,8 @@
-OpenEmbedded demo extras layer for DH electronics STM32MP1 platforms
-====================================================================
+OpenEmbedded demo extras layer for DH electronics platforms
+===========================================================
 
 This layer provides demo extras and examples for
-DH electronics STM32MP1 platforms.
+DH electronics platforms.
 
 Dependencies
 ------------
@@ -12,9 +12,6 @@ This layer depends on:
 * URI: git://git.yoctoproject.org/poky
   - branch: dunfell
   - layers: meta
-
-* URI: https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git
-  - branch: dunfell-3.1
 
 Building image
 --------------
@@ -31,10 +28,11 @@ location of the metalayers.
 
 * git://git.yoctoproject.org/poky					(branch: dunfell)
 * https://source.denx.de/denx/meta-mainline-common.git			(branch: dunfell-3.1)
-* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: dunfell-3.1)
-* https://github.com/dh-electronics/meta-dhsom-stm32-extras.git		(branch: dunfell-3.1)
 
 Additional optional layers handled by means of dynamic layers:
+* https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: dunfell-3.1)
+* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: dunfell-3.1)
+* https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: dunfell-3.1)
 * https://source.denx.de/denx/meta-mainline-graphics.git		(branch: dunfell-3.1)
 * git://github.com/openembedded/meta-openembedded.git			(branch: dunfell)
 * git://git.openembedded.org/meta-python2				(branch: dunfell)
@@ -66,8 +64,9 @@ BBLAYERS ?= " \
   /path/to/OE/meta-webkit \
   /path/to/OE/meta-mainline-common \
   /path/to/OE/meta-mainline-graphics \
+  /path/to/OE/meta-dhsom-imx-bsp \
   /path/to/OE/meta-dhsom-stm32-bsp \
-  /path/to/OE/meta-dhsom-stm32-extras \
+  /path/to/OE/meta-dhsom-extras \
   "
 ```
 
@@ -80,10 +79,11 @@ DISTRO = "dhlinux"
 
 Note that MACHINE must be either of:
 
-* dh-stm32mp1-dhcom-drc02
-* dh-stm32mp1-dhcom-pdk2
-* dh-stm32mp1-dhcom-picoitx
-* dh-stm32mp1-dhcor-avenger96
+* dh-imx6-dhcom-pdk2		(depends on: meta-dhsom-imx-bsp)
+* dh-stm32mp1-dhcom-drc02	(depends on: meta-dhsom-stm32-bsp)
+* dh-stm32mp1-dhcom-pdk2	(depends on: meta-dhsom-stm32-bsp)
+* dh-stm32mp1-dhcom-picoitx	(depends on: meta-dhsom-stm32-bsp)
+* dh-stm32mp1-dhcor-avenger96	(depends on: meta-dhsom-stm32-bsp)
 
 Adapt the suffixes of all the files and names of directories further in
 this documentation according to MACHINE.
@@ -165,7 +165,8 @@ BBLAYERS ?= " \
 	/path/to/OE/meta-webkit \
 	/path/to/OE/meta-mainline-common \
 	/path/to/OE/meta-mainline-graphics \
+	/path/to/OE/meta-dhsom-imx-bsp \
 	/path/to/OE/meta-dhsom-stm32-bsp \
-	/path/to/OE/meta-dhsom-stm32-extras \
+	/path/to/OE/meta-dhsom-extras \
 	"
 ```

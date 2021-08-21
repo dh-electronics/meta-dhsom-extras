@@ -4,7 +4,7 @@ LICENSE = "MIT"
 
 inherit core-image
 
-IMAGE_INSTALL:append:dh-stm32mp1-dhsom = " \
+IMAGE_INSTALL:append:dh-dhsom = " \
 	kernel-modules u-boot-default-env libubootenv-bin mtd-utils \
 	ca-certificates iw dropbear iproute2 init-ifupdown \
 	i2c-tools canutils systemd-conf openssl-engines rng-tools \
@@ -22,6 +22,6 @@ IMAGE_INSTALL:append:dh-stm32mp1-dhsom = " \
 	nano evtest minicom screen \
 	"
 
-IMAGE_FEATURES:append:dh-stm32mp1-dhsom = " \
+IMAGE_FEATURES:append:dh-dhsom = " \
 	dev-pkgs tools-sdk tools-debug tools-profile debug-tweaks \
 	"

@@ -1,4 +1,4 @@
-IMAGE_INSTALL:append:dh-stm32mp1-dhsom = " \
+IMAGE_INSTALL:append:dh-dhsom = " \
 	qtwebengine-minimal qtwebengine-examples qtbase-examples \
 	qtmultimedia-examples qtwayland \
 	"

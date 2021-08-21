@@ -1,1 +1,1 @@
-PACKAGECONFIG:append:dh-stm32mp1-dhsom = " gstreamer examples "
+PACKAGECONFIG:append:dh-dhsom = " gstreamer examples "

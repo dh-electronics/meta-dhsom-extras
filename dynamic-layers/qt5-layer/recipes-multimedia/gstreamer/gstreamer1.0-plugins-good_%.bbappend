@@ -1,1 +1,1 @@
-PACKAGECONFIG:append:dh-stm32mp1-dhsom = " qt5 "
+PACKAGECONFIG:append:dh-dhsom = " qt5 "
