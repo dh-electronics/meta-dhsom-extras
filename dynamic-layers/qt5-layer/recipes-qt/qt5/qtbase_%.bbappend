@@ -1,16 +1,16 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-PACKAGECONFIG_append_dh-stm32mp1-dhsom = " \
+PACKAGECONFIG:append:dh-stm32mp1-dhsom = " \
 	examples eglfs linuxfb gles2 kms gbm fontconfig freetype accessibility \
 	xkbcommon libinput \
 	"
 
-SRC_URI_append_dh-stm32mp1-dhsom = " \
+SRC_URI:append:dh-stm32mp1-dhsom = " \
 	file://qt5-eglfs-kms.json \
 	file://qt5-eglfs.sh \
 	"
 
-do_install_append_dh-stm32mp1-dhsom() {
+do_install:append:dh-stm32mp1-dhsom() {
 	install -d ${D}${sysconfdir}/default/
 	install -m 0644 ${WORKDIR}/qt5-eglfs-kms.json ${D}${sysconfdir}/default/
 

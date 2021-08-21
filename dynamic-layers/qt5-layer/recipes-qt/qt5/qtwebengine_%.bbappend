@@ -1,1 +1,1 @@
-PACKAGECONFIG_append_dh-stm32mp1-dhsom = " examples "
+PACKAGECONFIG:append:dh-stm32mp1-dhsom = " examples "

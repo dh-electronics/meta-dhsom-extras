@@ -19,13 +19,13 @@ inherit qmake5
 
 EXTRA_QMAKEVARS_PRE += "target.path=${libdir}/${P}"
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}${bindir}
 	install -m 0755 ${B}/minimal ${D}${bindir}/qtwebengine-minimal
 }
 
-FILES_${PN} += "${libdir}/${P}"
-RDEPENDS_${PN} += " \
+FILES:${PN} += "${libdir}/${P}"
+RDEPENDS:${PN} += " \
 	qtdeclarative-qmlplugins \
 	ttf-dejavu-sans \
 	ttf-dejavu-sans-mono \
@@ -34,12 +34,12 @@ RDEPENDS_${PN} += " \
 	ttf-dejavu-serif-condensed \
 	"
 
-FILES_${PN}-dbg += "${libdir}/${P}/.debug"
+FILES:${PN}-dbg += "${libdir}/${P}/.debug"
 
 # Add package to automatically start the web browser
 PACKAGES =+ "${PN}-auto"
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}${systemd_unitdir}/system
 	install -m 0644 ${WORKDIR}/qtwebengine-minimal.service ${D}${systemd_unitdir}/system/
 }
@@ -48,5 +48,5 @@ inherit systemd
 
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_AUTO_ENABLE = "enable"
-SYSTEMD_SERVICE_${PN} = "qtwebengine-minimal.service"
-FILES_${PN} += "${systemd_unitdir}/system/qtwebengine-minimal.service"
+SYSTEMD_SERVICE:${PN} = "qtwebengine-minimal.service"
+FILES:${PN} += "${systemd_unitdir}/system/qtwebengine-minimal.service"

@@ -1,1 +1,1 @@
-PACKAGECONFIG_append_dh-stm32mp1-dhsom = " 2dcanvas "
+PACKAGECONFIG:append:dh-stm32mp1-dhsom = " 2dcanvas "

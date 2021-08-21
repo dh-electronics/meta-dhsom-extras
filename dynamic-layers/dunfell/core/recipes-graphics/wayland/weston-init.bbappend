@@ -1,12 +1,12 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI_append_dh-stm32mp1-dhsom = " \
+SRC_URI:append:dh-stm32mp1-dhsom = " \
            file://weston.service \
            file://weston.socket \
            file://weston-autologin \
 	   "
 
-do_install_append_dh-stm32mp1-dhsom() {
+do_install:append:dh-stm32mp1-dhsom() {
 	rm ${D}${systemd_system_unitdir}/weston@.service
 	rm ${D}${sysconfdir}/udev/rules.d/71-weston-drm.rules
 	rmdir ${D}${sysconfdir}/udev/rules.d
@@ -31,9 +31,9 @@ do_install_append_dh-stm32mp1-dhsom() {
 
 inherit ${@'useradd' if ("dh-stm32mp1-dhsom" in d.getVar("MACHINEOVERRIDES", True).split(":")) else ' '}
 
-USERADD_PACKAGES_dh-stm32mp1-dhsom = "${PN}"
+USERADD_PACKAGES:dh-stm32mp1-dhsom = "${PN}"
 
-FILES_${PN}_dh-stm32mp1-dhsom = "\
+FILES:${PN}:dh-stm32mp1-dhsom = "\
     ${sysconfdir}/xdg/weston/weston.ini \
     ${systemd_system_unitdir}/weston.service \
     ${systemd_system_unitdir}/weston.socket \
@@ -42,6 +42,6 @@ FILES_${PN}_dh-stm32mp1-dhsom = "\
     /home/weston \
     "
 
-SYSTEMD_SERVICE_${PN}_dh-stm32mp1-dhsom = "weston.service weston.socket"
-USERADD_PARAM_${PN}_dh-stm32mp1-dhsom = "--home /home/weston --shell /bin/sh --user-group -G video,input weston"
-GROUPADD_PARAM_${PN}_dh-stm32mp1-dhsom = "-r wayland"
+SYSTEMD_SERVICE:${PN}:dh-stm32mp1-dhsom = "weston.service weston.socket"
+USERADD_PARAM:${PN}:dh-stm32mp1-dhsom = "--home /home/weston --shell /bin/sh --user-group -G video,input weston"
+GROUPADD_PARAM:${PN}:dh-stm32mp1-dhsom = "-r wayland"

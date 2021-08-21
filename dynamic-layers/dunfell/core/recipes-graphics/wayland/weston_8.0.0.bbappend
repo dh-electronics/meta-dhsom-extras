@@ -1,6 +1,6 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI_append_dh-stm32mp1-dhsom = " \
+SRC_URI:append:dh-stm32mp1-dhsom = " \
 	file://0001-kiosk-shell-Introduce-kiosk-fullscreen-shell-for-des.patch \
 	file://0002-kiosk-shell-Keep-track-of-seats-created-and-destroy-.patch \
 	file://0003-kiosk-shell-Give-keyboard-focus-when-mapping-the-sur.patch \

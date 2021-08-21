@@ -4,4 +4,4 @@ python __anonymous() {
         d.setVarFlag('PACKAGECONFIG', "shell-kiosk", "-Dshell-kiosk=true,-Dshell-kiosk=false")
 }
 
-PACKAGECONFIG_append_dh-stm32mp1-dhsom = " shell-kiosk "
+PACKAGECONFIG:append:dh-stm32mp1-dhsom = " shell-kiosk "

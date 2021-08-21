@@ -1,1 +1,1 @@
-IMAGE_INSTALL_append_dh-stm32mp1-dhsom = " nginx "
+IMAGE_INSTALL:append:dh-stm32mp1-dhsom = " nginx "
