@@ -25,3 +25,5 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 IMAGE_FEATURES:append:dh-dhsom = " \
 	dev-pkgs tools-sdk tools-debug tools-profile debug-tweaks \
 	"
+
+SYSTEMD_DEFAULT_TARGET:dh-dhsom = "graphical.target"
