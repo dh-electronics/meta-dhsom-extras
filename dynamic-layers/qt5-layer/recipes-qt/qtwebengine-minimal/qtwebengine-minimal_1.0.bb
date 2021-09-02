@@ -47,6 +47,6 @@ do_install:append() {
 inherit systemd
 
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_AUTO_ENABLE = "enable"
+SYSTEMD_AUTO_ENABLE = "disable"
 SYSTEMD_SERVICE:${PN} = "qtwebengine-minimal.service"
 FILES:${PN} += "${systemd_unitdir}/system/qtwebengine-minimal.service"
