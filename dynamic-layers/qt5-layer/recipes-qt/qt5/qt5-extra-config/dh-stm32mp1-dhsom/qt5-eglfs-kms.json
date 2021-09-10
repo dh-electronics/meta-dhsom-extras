@@ -1,7 +1,7 @@
 {
   "device": "/dev/dri/by-path/platform-5a001000.display-controller-card",
   "hwcursor": false,
-  "pbuffers": true,
+  "pbuffers": false,
   "outputs": [
     {
       "name": "LVDS1",
