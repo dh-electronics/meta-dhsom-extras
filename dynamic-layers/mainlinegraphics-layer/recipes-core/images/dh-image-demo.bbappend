@@ -1,1 +1,1 @@
-IMAGE_INSTALL:append:dh-dhsom = " vk-gl-cts apitrace "
+IMAGE_INSTALL:append:dh-dhsom = " opengl-es-cts apitrace "
