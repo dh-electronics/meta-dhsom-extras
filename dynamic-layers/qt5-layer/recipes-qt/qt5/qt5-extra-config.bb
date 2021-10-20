@@ -15,7 +15,6 @@ S = "${WORKDIR}"
 SRC_URI:append = " \
 	file://qt5-eglfs-kms.json \
 	file://qt5-eglfs.sh \
-	file://LICENSE \
 	"
 
 do_install () {
