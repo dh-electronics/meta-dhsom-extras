@@ -36,7 +36,7 @@ Additional optional layers handled by means of dynamic layers:
 * https://source.denx.de/denx/meta-mainline-graphics.git		(branch: dunfell-3.1)
 * git://github.com/openembedded/meta-openembedded.git			(branch: dunfell)
 * git://git.openembedded.org/meta-python2				(branch: dunfell)
-* git://github.com/meta-qt5/meta-qt5.git				(branch: dunfell)
+* git://github.com/meta-qt5/meta-qt5.git				(branch: honister)
 * git://github.com/kraj/meta-clang					(branch: dunfell)
 * git://github.com/OSSystems/meta-browser.git				(branch: master)
 * git://git.yoctoproject.org/meta-security				(branch: dunfell)
