@@ -1,6 +1,6 @@
 DESCRIPTION = "Extra configuration files for qt5"
 LICENSE = "LGPLv2.1"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/LGPL-2.1;md5=1a6d268fd218675ffea8be556788b780"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/LGPL-2.1${@'' if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else '-only'};md5=1a6d268fd218675ffea8be556788b780"
 
 inherit allarch
 
