@@ -16,4 +16,5 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	cpufrequtils \
 	can-utils \
 	devmem2 \
+	iperf3 \
 	"

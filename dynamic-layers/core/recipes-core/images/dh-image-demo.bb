@@ -17,7 +17,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	\
 	weston weston-init weston-examples kmscube \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland', '', d)} \
-	piglit iperf3 stress-ng ethtool hostapd rfkill \
+	piglit stress-ng ethtool hostapd rfkill \
 	\
 	nano evtest minicom screen \
 	"
