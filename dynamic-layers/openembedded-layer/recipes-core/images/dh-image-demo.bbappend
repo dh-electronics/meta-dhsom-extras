@@ -17,4 +17,5 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	can-utils \
 	devmem2 \
 	iperf3 \
+	hostapd rfkill \
 	"
