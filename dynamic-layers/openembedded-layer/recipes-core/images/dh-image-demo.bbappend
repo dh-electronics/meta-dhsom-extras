@@ -15,4 +15,5 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	uhubctl \
 	cpufrequtils \
 	can-utils \
+	devmem2 \
 	"

@@ -10,7 +10,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	i2c-tools systemd-conf openssl-engines rng-tools \
 	libdrm mesa \
 	libegl-mesa libgbm libgles1-mesa libgles2-mesa \
-	libglapi mesa-megadriver devmem2 \
+	libglapi mesa-megadriver \
 	\
 	gstreamer1.0 gstreamer1.0-plugins-base \
 	gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
