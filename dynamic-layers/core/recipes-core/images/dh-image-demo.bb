@@ -19,7 +19,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland', '', d)} \
 	piglit stress-ng ethtool \
 	\
-	evtest minicom screen \
+	minicom screen \
 	"
 
 IMAGE_FEATURES:append:dh-dhsom = " \

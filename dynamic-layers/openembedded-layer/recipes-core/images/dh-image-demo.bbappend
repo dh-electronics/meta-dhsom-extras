@@ -19,4 +19,5 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	iperf3 \
 	hostapd rfkill \
 	nano \
+	evtest \
 	"
