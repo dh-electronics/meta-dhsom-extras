@@ -14,4 +14,5 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	libqmi libmbim \
 	uhubctl \
 	cpufrequtils \
+	can-utils \
 	"
