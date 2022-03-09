@@ -1,0 +1,4 @@
+[Match]
+Path=platform-30be0000.ethernet
+[Network]
+DHCP=yes

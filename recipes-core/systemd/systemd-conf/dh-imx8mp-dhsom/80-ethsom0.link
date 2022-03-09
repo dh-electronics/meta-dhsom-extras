@@ -1,0 +1,4 @@
+[Match]
+Path=platform-30bf0000.ethernet
+[Link]
+Name=ethsom0
