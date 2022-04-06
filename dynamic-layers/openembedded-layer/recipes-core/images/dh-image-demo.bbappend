@@ -10,7 +10,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	pulseaudio-server pulseaudio-misc \
 	libusbgx linuxptp \
 	glmark2 memtester \
-	dstat htop \
+	${@'dstat' if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else 'dool'} htop \
 	libqmi libmbim \
 	uhubctl \
 	cpufrequtils \
