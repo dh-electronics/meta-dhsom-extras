@@ -34,14 +34,14 @@ Additional optional layers handled by means of dynamic layers:
 * https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: dunfell-3.1)
 * https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: dunfell-3.1)
 * https://source.denx.de/denx/meta-mainline-graphics.git		(branch: dunfell-3.1)
-* git://github.com/openembedded/meta-openembedded.git			(branch: dunfell)
+* https://github.com/openembedded/meta-openembedded.git			(branch: dunfell)
 * git://git.openembedded.org/meta-python2				(branch: dunfell)
-* git://github.com/meta-qt5/meta-qt5.git				(branch: master)
-* git://github.com/kraj/meta-clang					(branch: dunfell)
-* git://github.com/OSSystems/meta-browser.git				(branch: master)
+* https://github.com/meta-qt5/meta-qt5.git				(branch: master)
+* https://github.com/kraj/meta-clang					(branch: dunfell)
+* https://github.com/OSSystems/meta-browser.git				(branch: master)
 * git://git.yoctoproject.org/meta-security				(branch: dunfell)
-* git://github.com/Igalia/meta-webkit.git				(branch: dunfell)
-* git://github.com/cazfi/meta-games.git					(branch: master)
+* https://github.com/Igalia/meta-webkit.git				(branch: dunfell)
+* https://github.com/cazfi/meta-games.git				(branch: master)
 
 With all the source artifacts in place, proceed with setting up the build
 using oe-init-build-env as specified in the Yocto Project wiki.
