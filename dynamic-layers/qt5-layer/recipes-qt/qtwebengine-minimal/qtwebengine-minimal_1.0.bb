@@ -13,7 +13,7 @@ SRC_URI = " \
 	"
 
 S = "${WORKDIR}"
-B = "${WORKDIR}/${BPN}-${PV}/"
+B = "${WORKDIR}/${BPN}-${PV}"
 
 inherit qmake5
 
@@ -25,7 +25,7 @@ do_install:append() {
 }
 
 FILES:${PN} += "${libdir}/${P}"
-RDEPENDS:${PN} += " \
+RDEPENDS:${PN} += "\
 	qtdeclarative-qmlplugins \
 	ttf-dejavu-sans \
 	ttf-dejavu-sans-mono \
