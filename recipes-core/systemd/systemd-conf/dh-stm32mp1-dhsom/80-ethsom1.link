@@ -1,4 +1,4 @@
 [Match]
-Path=platform-64000000.ks8851mll
+Path=platform-64000000.ethernet
 [Link]
 Name=ethsom1
