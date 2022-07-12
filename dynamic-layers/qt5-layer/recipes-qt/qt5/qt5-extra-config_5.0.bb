@@ -12,14 +12,21 @@ INHIBIT_PACKAGE_STRIP = "1"
 
 S = "${WORKDIR}"
 
-SRC_URI:append = " \
-	file://qt5-eglfs-kms.json \
-	file://qt5-eglfs.sh \
+SRC_URI:append = " file://qt5-eglfs.sh"
+
+SRC_URI:dh-stm32mp1-dhsom:append = " file://qt5-eglfs-kms.json"
+
+SRC_URI:dh-imx6-dhsom:append = " file://qt5-eglfs-kms.json"
+
+SRC_URI:dh-imx8mp-dhsom:append = " \
+	file://qt5-eglfs-kms-dsi.json \
+	file://qt5-eglfs-kms-hdmi.json \
+	file://qt5-eglfs-kms-lvds.json \
 	"
 
 do_install () {
 	install -d ${D}${sysconfdir}/default/
-	install -m 0644 ${WORKDIR}/qt5-eglfs-kms.json ${D}${sysconfdir}/default/
+	install -m 0644 ${WORKDIR}/qt5-eglfs-kms*.json ${D}${sysconfdir}/default/
 
 	install -d ${D}${sysconfdir}/profile.d/
 	install -m 0755 ${WORKDIR}/qt5-eglfs.sh ${D}${sysconfdir}/profile.d/
