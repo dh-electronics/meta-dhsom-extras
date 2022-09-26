@@ -19,7 +19,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland', '', d)} \
 	piglit stress-ng ethtool \
 	\
-	minicom screen \
+	minicom screen e2fsprogs-resize2fs \
 	"
 
 IMAGE_FEATURES:append:dh-dhsom = " \
