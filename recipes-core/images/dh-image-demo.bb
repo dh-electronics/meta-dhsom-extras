@@ -6,7 +6,7 @@ inherit core-image
 
 IMAGE_INSTALL:append:dh-dhsom = " \
 	kernel-modules u-boot-default-env libubootenv-bin mtd-utils \
-	ca-certificates iw iproute2 init-ifupdown \
+	ca-certificates iw iproute2 \
 	i2c-tools systemd-conf openssl-engines rng-tools \
 	libdrm mesa \
 	libegl-mesa libgbm libgles1-mesa libgles2-mesa \
