@@ -1,0 +1,4 @@
+[Match]
+Path=platform-soc-amba-48004000.sdmmc
+[Link]
+Name=wlansom0

@@ -11,6 +11,8 @@ SRC_URI:append:dh-dhsom = " \
 SRC_URI:append:dh-stm32mp1-dhsom = " \
 	file://80-ethsom1.link \
 	file://80-ethsom1.network \
+	file://80-wlansom0.link \
+	file://80-wlansom0.network \
 	"
 
 SRC_URI:append:dh-stm32mp1-dhcom-drc02 = " \
@@ -38,6 +40,10 @@ do_install:append:dh-stm32mp1-dhsom() {
 			  ${D}${systemd_unitdir}/network/80-ethsom1.link
 	install -D -m0644 ${WORKDIR}/80-ethsom1.network \
 			  ${D}${systemd_unitdir}/network/80-ethsom1.network
+	install -D -m0644 ${WORKDIR}/80-wlansom0.link \
+			  ${D}${systemd_unitdir}/network/80-wlansom0.link
+	install -D -m0644 ${WORKDIR}/80-wlansom0.network \
+			  ${D}${systemd_unitdir}/network/80-wlansom0.network
 }
 
 do_install:append:dh-stm32mp1-dhcom-drc02() {
