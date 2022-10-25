@@ -6,7 +6,7 @@ inherit core-image
 
 IMAGE_INSTALL:append:dh-dhsom = " \
 	kernel-modules u-boot-default-env libubootenv-bin mtd-utils \
-	ca-certificates iw dropbear iproute2 init-ifupdown \
+	ca-certificates iw iproute2 init-ifupdown \
 	i2c-tools systemd-conf openssl-engines rng-tools \
 	libdrm mesa \
 	libegl-mesa libgbm libgles1-mesa libgles2-mesa \
@@ -24,6 +24,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 
 IMAGE_FEATURES:append:dh-dhsom = " \
 	dev-pkgs tools-sdk tools-debug tools-profile debug-tweaks \
+	ssh-server-dropbear \
 	"
 
 SYSTEMD_DEFAULT_TARGET:dh-dhsom = "graphical.target"
