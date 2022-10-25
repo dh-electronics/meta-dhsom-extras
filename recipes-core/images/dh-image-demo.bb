@@ -5,9 +5,13 @@ LICENSE = "MIT"
 inherit core-image
 
 IMAGE_INSTALL:append:dh-dhsom = " \
-	kernel-modules u-boot-default-env libubootenv-bin mtd-utils \
-	ca-certificates iw iproute2 \
-	i2c-tools systemd-conf openssl-engines rng-tools \
+	u-boot-default-env libubootenv-bin \
+	kernel-modules \
+	systemd-conf ca-certificates openssl-engines rng-tools \
+	mtd-utils i2c-tools e2fsprogs-resize2fs \
+	\
+	iw iproute2 ethtool \
+	\
 	libdrm mesa \
 	libegl-mesa libgbm libgles1-mesa libgles2-mesa \
 	libglapi mesa-megadriver \
@@ -17,9 +21,10 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	\
 	weston weston-init weston-examples kmscube \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland', '', d)} \
-	piglit stress-ng ethtool \
 	\
-	minicom screen e2fsprogs-resize2fs \
+	piglit stress-ng \
+	\
+	minicom screen \
 	"
 
 IMAGE_FEATURES:append:dh-dhsom = " \
