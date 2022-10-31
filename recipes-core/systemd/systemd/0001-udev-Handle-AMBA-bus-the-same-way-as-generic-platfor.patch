@@ -16,7 +16,7 @@ Add the 'amba' subsystem handling the same way 'platform' subsystem
 is handled to get ID_PATH 'platform-soc-amba-48004000.sdmmc' on the
 former, which is far more useful.
 
-Upstream-Status: Submitted [https://github.com/systemd/systemd/pull/25129]
+Upstream-Status: Backport [f80b7d1a89abd686931f845a3582329bce1f3fd6]
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 
