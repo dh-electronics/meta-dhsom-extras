@@ -1,4 +1,4 @@
-From 7b26a14aecd49817fae032e49e57aa6594007204 Mon Sep 17 00:00:00 2001
+From 0ae0341661ee521e6ceb5fc1b73f6e80d7d0b7a1 Mon Sep 17 00:00:00 2001
 From: Marek Vasut <marex@denx.de>
 Date: Tue, 25 Oct 2022 12:50:09 +0200
 Subject: [PATCH] udev: Handle AMBA bus the same way as generic platform bus
@@ -14,7 +14,7 @@ which is far more useful.
 
 Add the 'amba' subsystem handling the same way 'platform' subsystem
 is handled to get ID_PATH 'platform-soc-amba-48004000.sdmmc' on the
-former, which is far more useful.
+former, which is far more useful compared to 'platform-soc'.
 
 Upstream-Status: Backport [f80b7d1a89abd686931f845a3582329bce1f3fd6]
 Signed-off-by: Marek Vasut <marex@denx.de>
@@ -165,27 +165,25 @@ and the attributes from one single parent device.
     ATTRS{power/runtime_suspended_time}=="0"
 ```
 ---
- src/udev/udev-builtin-path_id.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ src/udev/udev-builtin-path_id.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/src/udev/udev-builtin-path_id.c b/src/udev/udev-builtin-path_id.c
-index ae92e45205..c8cdfd37ff 100644
+index ca38f56087..bc24646a1e 100644
 --- a/src/udev/udev-builtin-path_id.c
 +++ b/src/udev/udev-builtin-path_id.c
-@@ -595,6 +595,13 @@ static int builtin_path_id(sd_device *dev, sd_netlink **rtnl, int argc, char *ar
+@@ -564,6 +564,11 @@ static int builtin_path_id(sd_device *dev, int argc, char *argv[], bool test) {
                          parent = skip_subsystem(parent, "platform");
                          supported_transport = true;
                          supported_parent = true;
 +                } else if (streq(subsys, "amba")) {
 +                        path_prepend(&path, "amba-%s", sysname);
-+                        if (compat_path)
-+                                path_prepend(&compat_path, "amba-%s", sysname);
 +                        parent = skip_subsystem(parent, "amba");
 +                        supported_transport = true;
 +                        supported_parent = true;
                  } else if (streq(subsys, "acpi")) {
                          path_prepend(&path, "acpi-%s", sysname);
-                         if (compat_path)
+                         parent = skip_subsystem(parent, "acpi");
 -- 
 2.35.1
 
