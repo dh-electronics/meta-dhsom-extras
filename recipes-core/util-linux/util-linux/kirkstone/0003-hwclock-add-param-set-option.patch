@@ -1,0 +1,227 @@
+From 9018115c2efee58ed8476a0a6bc982b6876df8fa Mon Sep 17 00:00:00 2001
+From: Bastian Krause <bst@pengutronix.de>
+Date: Fri, 21 Jan 2022 16:09:43 +0100
+Subject: [PATCH 3/4] hwclock: add --param-set option
+
+Implement the RTC_PARAM_SET RTC ioctl in hwclock. The ioctl interface was
+introduced with [1], which went mainline in Kernel v5.16. The parameters
+are independent of hardware/driver. This means we can read and set
+parameters in a generic way.
+
+The new --param-set hwclock function accepts aliases for parameters
+currently existent (Kernel v5.16). They can be extended later on. As
+fallback and for values, hexadecimal (if prefixed with 0x) and decimal
+values, as defined in [2], are accepted.
+
+Example:
+
+  $ hwclock --param-set bsm=0x0
+
+[1] https://lore.kernel.org/all/20211018151933.76865-1-alexandre.belloni@bootlin.com/
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/uapi/linux/rtc.h
+
+Upstream-Status: Backport [b22b78b1be6df917d5c449d2f5e45d0a67f14502]
+Signed-off-by: Bastian Krause <bst@pengutronix.de>
+---
+ bash-completion/hwclock |  5 ++++
+ sys-utils/hwclock-rtc.c | 60 +++++++++++++++++++++++++++++++++++++++++
+ sys-utils/hwclock.c     | 20 +++++++++++---
+ sys-utils/hwclock.h     |  3 +++
+ 4 files changed, 85 insertions(+), 3 deletions(-)
+
+diff --git a/bash-completion/hwclock b/bash-completion/hwclock
+index 06e0ce79e..6b4c01724 100644
+--- a/bash-completion/hwclock
++++ b/bash-completion/hwclock
+@@ -23,6 +23,10 @@ _hwclock_module()
+ 			COMPREPLY=( $(compgen -W "param" -- $cur) )
+ 			return 0
+ 			;;
++		'--param-set')
++			COMPREPLY=( $(compgen -W "param=value" -- $cur) )
++			return 0
++			;;
+ 		'-h'|'-?'|'--help'|'-v'|'-V'|'--version')
+ 			return 0
+ 			;;
+@@ -49,6 +53,7 @@ _hwclock_module()
+ 				--delay
+ 				--epoch
+ 				--param-get
++				--param-set
+ 				--update-drift
+ 				--noadjfile
+ 				--adjfile
+diff --git a/sys-utils/hwclock-rtc.c b/sys-utils/hwclock-rtc.c
+index 92e1ab7ac..becfc7b83 100644
+--- a/sys-utils/hwclock-rtc.c
++++ b/sys-utils/hwclock-rtc.c
+@@ -509,3 +509,63 @@ int get_param_rtc(const struct hwclock_control *ctl, struct rtc_param *param)
+ 
+ 	return 0;
+ }
++
++/*
++ * Set the Hardware Clock parameter in the kernel.
++ */
++int set_param_rtc(const struct hwclock_control *ctl)
++{
++	char *tok = NULL, *end = NULL;
++	int rtc_fd, base;
++	struct rtc_param param;
++
++	memset(&param, 0, sizeof(param));
++
++	/* handle name */
++	tok = strtok(ctl->param_set_option, "=");
++	if (resolve_rtc_param_alias(tok, &param.param)) {
++		base = strncmp(tok, "0x", 2) ? 10 : 16;
++
++		errno = 0;
++		param.param = strtoull(tok, &end, base);
++		if (errno || !end || *end) {
++			warnx(_("could not convert parameter name to number"));
++			return 1;
++		}
++	}
++
++	/* handle value */
++	tok = strtok(NULL, "=");
++	if (!tok) {
++		warnx(_("expected <param>=<value>"));
++		return 1;
++	}
++
++	base = strncmp(tok, "0x", 2) ? 10 : 16;
++	end = NULL;
++	errno = 0;
++	param.uvalue = strtoull(tok, &end, base);
++	if (errno || !end || *end) {
++		warnx(_("could not convert parameter value to number"));
++		return 1;
++	}
++
++	/* set parameter */
++	rtc_fd = open_rtc(ctl);
++	if (rtc_fd < 0) {
++		warnx(_("cannot open %s"), rtc_dev_name);
++		return 1;
++	}
++
++	if (ioctl(rtc_fd, RTC_PARAM_SET, &param) == -1) {
++		warn(_("ioctl(%d, RTC_PARAM_SET, param) to %s failed"),
++		     rtc_fd, rtc_dev_name);
++		return 1;
++	}
++
++	if (ctl->verbose)
++		printf(_("ioctl(%d, RTC_PARAM_SET, param) to %s succeeded.\n"),
++		       rtc_fd, rtc_dev_name);
++
++	return 0;
++}
+diff --git a/sys-utils/hwclock.c b/sys-utils/hwclock.c
+index dc0173b12..59761d669 100644
+--- a/sys-utils/hwclock.c
++++ b/sys-utils/hwclock.c
+@@ -1163,6 +1163,12 @@ manipulate_rtc_param(const struct hwclock_control *ctl)
+ 
+ 		printf(_("The RTC parameter 0x%llx is set to 0x%llx.\n"),
+ 		       param.param, param.uvalue);
++
++	} else if (ctl->param_set_option) {
++		if (ctl->testing)
++			return 0;
++
++		return set_param_rtc(ctl);
+ 	}
+ 
+ 	return 1;
+@@ -1197,6 +1203,7 @@ usage(void)
+ 	puts(_("     --setepoch                  set the RTC epoch according to --epoch"));
+ #endif
+ 	puts(_("     --param-get <param>         display the RTC parameter"));
++	puts(_("     --param-set <param>=<value> set the RTC parameter"));
+ 	puts(_("     --predict                   predict the drifted RTC time according to --date"));
+ 	fputs(USAGE_OPTIONS, stdout);
+ 	puts(_(" -u, --utc                       the RTC timescale is UTC"));
+@@ -1231,9 +1238,9 @@ usage(void)
+ 		param++;
+ 	}
+ 
+-	puts(_("   See Kernel's include/uapi/linux/rtc.h for parameters."));
++	puts(_("   See Kernel's include/uapi/linux/rtc.h for parameters and values."));
+ 	fputs(USAGE_ARG_SEPARATOR, stdout);
+-	puts(_(" <param> accepts hexadecimal values if prefixed with 0x, otherwise decimal."));
++	puts(_(" <param> and <value> accept hexadecimal values if prefixed with 0x, otherwise decimal."));
+ 
+ 	printf(USAGE_MAN_TAIL("hwclock(8)"));
+ 	exit(EXIT_SUCCESS);
+@@ -1265,6 +1272,7 @@ int main(int argc, char **argv)
+ 		OPT_GETEPOCH,
+ 		OPT_NOADJFILE,
+ 		OPT_PARAM_GET,
++		OPT_PARAM_SET,
+ 		OPT_PREDICT,
+ 		OPT_SET,
+ 		OPT_SETEPOCH,
+@@ -1292,6 +1300,7 @@ int main(int argc, char **argv)
+ 		{ "epoch",        required_argument, NULL, OPT_EPOCH      },
+ #endif
+ 		{ "param-get",    required_argument, NULL, OPT_PARAM_GET  },
++		{ "param-set",    required_argument, NULL, OPT_PARAM_SET  },
+ 		{ "noadjfile",    no_argument,       NULL, OPT_NOADJFILE  },
+ 		{ "directisa",    no_argument,       NULL, OPT_DIRECTISA  },
+ 		{ "test",         no_argument,       NULL, OPT_TEST       },
+@@ -1409,6 +1418,11 @@ int main(int argc, char **argv)
+ 			ctl.param_get_option = optarg;
+ 			ctl.show = 0;
+ 			break;
++		case OPT_PARAM_SET:
++			ctl.param_set_option = optarg;
++			ctl.show = 0;
++			ctl.hwaudit_on = 1;
++			break;
+ 		case OPT_NOADJFILE:
+ 			ctl.noadjfile = 1;
+ 			break;
+@@ -1502,7 +1516,7 @@ int main(int argc, char **argv)
+ 		}
+ 	}
+ 
+-	if (ctl.param_get_option) {
++	if (ctl.param_get_option || ctl.param_set_option) {
+ 		if (manipulate_rtc_param(&ctl))
+ 			hwclock_exit(&ctl, EXIT_FAILURE);
+ 
+diff --git a/sys-utils/hwclock.h b/sys-utils/hwclock.h
+index 7dd67110b..8af7e3fdf 100644
+--- a/sys-utils/hwclock.h
++++ b/sys-utils/hwclock.h
+@@ -31,6 +31,7 @@ struct hwclock_control {
+ 	char *rtc_dev_name;
+ #endif
+ 	char *param_get_option;
++	char *param_set_option;
+ 	unsigned int
+ 		hwaudit_on:1,
+ 		adjust:1,
+@@ -88,6 +89,7 @@ struct rtc_param {
+ };
+ 
+ #define RTC_PARAM_GET	_IOW('p', 0x13, struct rtc_param)
++#define RTC_PARAM_SET	_IOW('p', 0x14, struct rtc_param)
+ 
+ #define RTC_PARAM_FEATURES		0
+ #define RTC_PARAM_CORRECTION		1
+@@ -107,6 +109,7 @@ static struct hwclock_param hwclock_params[] = {
+ };
+ 
+ extern int get_param_rtc(const struct hwclock_control *ctl, struct rtc_param *param);
++extern int set_param_rtc(const struct hwclock_control *ctl);
+ 
+ extern void __attribute__((__noreturn__))
+ hwclock_exit(const struct hwclock_control *ctl, int status);
+-- 
+2.39.0
+

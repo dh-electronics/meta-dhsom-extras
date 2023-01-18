@@ -1,0 +1,219 @@
+From 85e70afc46de9ef0bc6b7e7842b6b028b454570b Mon Sep 17 00:00:00 2001
+From: Karel Zak <kzak@redhat.com>
+Date: Wed, 5 Feb 2020 11:01:36 +0100
+Subject: [PATCH 6/6] docs: improve size arguments description in --help output
+
+Let's add "Arguments:" section to the --help output and describe
+{K,M,G...}iB suffixes there.
+
+Addresses: https://github.com/karelzak/util-linux/pull/917
+Co-Author: ed <ed@s5h.net>
+Upstream-Status: Backport [f1970cc557907a047da12202cf435ce03ca7b931]
+Signed-off-by: Karel Zak <kzak@redhat.com>
+---
+ disk-utils/fdisk.c     | 2 +-
+ include/c.h            | 5 +++++
+ misc-utils/blkid.c     | 7 ++++++-
+ misc-utils/mcookie.c   | 4 ++++
+ misc-utils/wipefs.c    | 3 +++
+ sys-utils/blkdiscard.c | 3 +++
+ sys-utils/blkzone.c    | 3 +++
+ sys-utils/fallocate.c  | 3 +++
+ sys-utils/fstrim.c     | 4 ++++
+ sys-utils/ipcmk.c      | 4 ++++
+ sys-utils/zramctl.c    | 3 +++
+ text-utils/hexdump.c   | 6 +++++-
+ 12 files changed, 44 insertions(+), 3 deletions(-)
+
+diff --git a/disk-utils/fdisk.c b/disk-utils/fdisk.c
+index 0502fa33c..25e38fc38 100644
+--- a/disk-utils/fdisk.c
++++ b/disk-utils/fdisk.c
+@@ -878,7 +878,7 @@ int main(int argc, char **argv)
+ 		{ "color",          optional_argument, NULL, 'L' },
+ 		{ "compatibility",  optional_argument, NULL, 'c' },
+ 		{ "cylinders",      required_argument, NULL, 'C' },
+-		{ "heads",	    required_argument, NULL, 'H' },
++		{ "heads",          required_argument, NULL, 'H' },
+ 		{ "sectors",        required_argument, NULL, 'S' },
+ 		{ "getsz",          no_argument,       NULL, 's' },
+ 		{ "help",           no_argument,       NULL, 'h' },
+diff --git a/include/c.h b/include/c.h
+index 59f88c7c4..64cf5c3fb 100644
+--- a/include/c.h
++++ b/include/c.h
+@@ -363,6 +363,11 @@ static inline int xusleep(useconds_t usec)
+ 		, " -h, --help",    USAGE_OPTSTR_HELP \
+ 		, " -V, --version", USAGE_OPTSTR_VERSION
+ 
++#define USAGE_ARG_SEPARATOR    "\n"
++#define USAGE_ARG_SIZE(_name) \
++		_(" %s arguments may be followed by the suffixes for\n" \
++		  "   GiB, TiB, PiB, EiB, ZiB, and YiB (the \"iB\" is optional)\n"), _name
++
+ #define USAGE_MAN_TAIL(_man)   _("\nFor more details see %s.\n"), _man
+ 
+ #define UTIL_LINUX_VERSION _("%s from %s\n"), program_invocation_short_name, PACKAGE_STRING
+diff --git a/misc-utils/blkid.c b/misc-utils/blkid.c
+index 88a90578b..dba3bb7d7 100644
+--- a/misc-utils/blkid.c
++++ b/misc-utils/blkid.c
+@@ -86,7 +86,6 @@ static void __attribute__((__noreturn__)) usage(void)
+ 	fputs(_(	" -l, --list-one             look up only first device with token specified by -t\n"), out);
+ 	fputs(_(	" -L, --label <label>        convert LABEL to device name\n"), out);
+ 	fputs(_(	" -U, --uuid <uuid>          convert UUID to device name\n"), out);
+-	fputs(_(	" <dev>                      specify device(s) to probe (default: all devices)\n"), out);
+ 	fputs(          "\n", out);
+ 	fputs(_(	"Low-level probing options:\n"), out);
+ 	fputs(_(	" -p, --probe                low-level superblocks probing (bypass cache)\n"), out);
+@@ -99,6 +98,12 @@ static void __attribute__((__noreturn__)) usage(void)
+ 
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(28));
++
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<size> and <offset>")));
++	fputs(USAGE_ARG_SEPARATOR, out);
++	fputs(_(" <dev> specify device(s) to probe (default: all devices)\n"), out);
++
+ 	printf(USAGE_MAN_TAIL("blkid(8)"));
+ 	exit(EXIT_SUCCESS);
+ }
+diff --git a/misc-utils/mcookie.c b/misc-utils/mcookie.c
+index f1680656a..549531454 100644
+--- a/misc-utils/mcookie.c
++++ b/misc-utils/mcookie.c
+@@ -92,6 +92,10 @@ static void __attribute__((__noreturn__)) usage(void)
+ 
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(23));
++
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<num>")));
++
+ 	printf(USAGE_MAN_TAIL("mcookie(1)"));
+ 
+ 	exit(EXIT_SUCCESS);
+diff --git a/misc-utils/wipefs.c b/misc-utils/wipefs.c
+index 313ddc36e..2a16d6222 100644
+--- a/misc-utils/wipefs.c
++++ b/misc-utils/wipefs.c
+@@ -658,6 +658,9 @@ usage(void)
+ 
+ 	printf(USAGE_HELP_OPTIONS(21));
+ 
++	fputs(USAGE_ARGUMENTS, stdout);
++	printf(USAGE_ARG_SIZE(_("<num>")));
++
+ 	fputs(USAGE_COLUMNS, stdout);
+ 	for (i = 0; i < ARRAY_SIZE(infos); i++)
+ 		fprintf(stdout, " %8s  %s\n", infos[i].name, _(infos[i].help));
+diff --git a/sys-utils/blkdiscard.c b/sys-utils/blkdiscard.c
+index f9ba5e468..0feda7988 100644
+--- a/sys-utils/blkdiscard.c
++++ b/sys-utils/blkdiscard.c
+@@ -98,6 +98,9 @@ static void __attribute__((__noreturn__)) usage(void)
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(21));
+ 
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<num>")));
++
+ 	printf(USAGE_MAN_TAIL("blkdiscard(8)"));
+ 	exit(EXIT_SUCCESS);
+ }
+diff --git a/sys-utils/blkzone.c b/sys-utils/blkzone.c
+index f17277493..0a6001479 100644
+--- a/sys-utils/blkzone.c
++++ b/sys-utils/blkzone.c
+@@ -322,6 +322,9 @@ static void __attribute__((__noreturn__)) usage(void)
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(24));
+ 
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<sector> and <sectors>")));
++
+ 	printf(USAGE_MAN_TAIL("blkzone(8)"));
+ 	exit(EXIT_SUCCESS);
+ }
+diff --git a/sys-utils/fallocate.c b/sys-utils/fallocate.c
+index 15dcbb0a6..014b94624 100644
+--- a/sys-utils/fallocate.c
++++ b/sys-utils/fallocate.c
+@@ -103,6 +103,9 @@ static void __attribute__((__noreturn__)) usage(void)
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(22));
+ 
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<num>")));
++
+ 	printf(USAGE_MAN_TAIL("fallocate(1)"));
+ 
+ 	exit(EXIT_SUCCESS);
+diff --git a/sys-utils/fstrim.c b/sys-utils/fstrim.c
+index e6d7af3ea..6c8443242 100644
+--- a/sys-utils/fstrim.c
++++ b/sys-utils/fstrim.c
+@@ -396,6 +396,10 @@ static void __attribute__((__noreturn__)) usage(void)
+ 
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(21));
++
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<num>")));
++
+ 	printf(USAGE_MAN_TAIL("fstrim(8)"));
+ 	exit(EXIT_SUCCESS);
+ }
+diff --git a/sys-utils/ipcmk.c b/sys-utils/ipcmk.c
+index 8aadffbbb..5e942b775 100644
+--- a/sys-utils/ipcmk.c
++++ b/sys-utils/ipcmk.c
+@@ -77,6 +77,10 @@ static void __attribute__((__noreturn__)) usage(void)
+ 
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(26));
++
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<size>")));
++
+ 	printf(USAGE_MAN_TAIL("ipcmk(1)"));
+ 
+ 	exit(EXIT_SUCCESS);
+diff --git a/sys-utils/zramctl.c b/sys-utils/zramctl.c
+index 83c260db5..bc0d0d069 100644
+--- a/sys-utils/zramctl.c
++++ b/sys-utils/zramctl.c
+@@ -559,6 +559,9 @@ static void __attribute__((__noreturn__)) usage(void)
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(27));
+ 
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<size>")));
++
+ 	fputs(USAGE_COLUMNS, out);
+ 	for (i = 0; i < ARRAY_SIZE(infos); i++)
+ 		fprintf(out, " %11s  %s\n", infos[i].name, _(infos[i].help));
+diff --git a/text-utils/hexdump.c b/text-utils/hexdump.c
+index cbd593e5f..d7a54be5b 100644
+--- a/text-utils/hexdump.c
++++ b/text-utils/hexdump.c
+@@ -172,10 +172,14 @@ void __attribute__((__noreturn__)) usage(void)
+ 	fputs(_(" -n, --length <length>     interpret only length bytes of input\n"), out);
+ 	fputs(_(" -s, --skip <offset>       skip offset bytes from the beginning\n"), out);
+ 	fputs(_(" -v, --no-squeezing        output identical lines\n"), out);
++
+ 	fputs(USAGE_SEPARATOR, out);
+ 	printf(USAGE_HELP_OPTIONS(27));
+-	printf(USAGE_MAN_TAIL("hexdump(1)"));
+ 
++	fputs(USAGE_ARGUMENTS, out);
++	printf(USAGE_ARG_SIZE(_("<length> and <offset>")));
++
++	printf(USAGE_MAN_TAIL("hexdump(1)"));
+ 	exit(EXIT_SUCCESS);
+ }
+ 
+-- 
+2.39.0
+

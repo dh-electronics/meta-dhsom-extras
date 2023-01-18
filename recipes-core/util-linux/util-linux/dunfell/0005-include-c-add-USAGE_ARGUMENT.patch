@@ -1,0 +1,26 @@
+From 4aeb9766a856e73dbdde6083bbcbf8843765f7a6 Mon Sep 17 00:00:00 2001
+From: Karel Zak <kzak@redhat.com>
+Date: Tue, 4 Feb 2020 11:20:16 +0100
+Subject: [PATCH 5/6] include/c: add USAGE_ARGUMENT
+
+Upstream-Status: Backport [67f938bfbac442f6296704b4f68bc91506cdb0ff]
+Signed-off-by: Karel Zak <kzak@redhat.com>
+---
+ include/c.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/c.h b/include/c.h
+index 812692885..59f88c7c4 100644
+--- a/include/c.h
++++ b/include/c.h
+@@ -350,6 +350,7 @@ static inline int xusleep(useconds_t usec)
+ #define USAGE_OPTIONS    _("\nOptions:\n")
+ #define USAGE_FUNCTIONS  _("\nFunctions:\n")
+ #define USAGE_COMMANDS   _("\nCommands:\n")
++#define USAGE_ARGUMENTS   _("\nArguments:\n")
+ #define USAGE_COLUMNS    _("\nAvailable output columns:\n")
+ #define USAGE_SEPARATOR    "\n"
+ 
+-- 
+2.39.0
+
