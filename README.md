@@ -10,7 +10,7 @@ Dependencies
 This layer depends on:
 
 * URI: git://git.yoctoproject.org/poky
-  - branch: dunfell
+  - branch: dunfell or kirkstone
   - layers: meta
 
 Building image
@@ -26,21 +26,21 @@ be cloned into a location accessible to the build system and a branch listed
 below shall be checked out. The examples below will use /path/to/OE/ as a
 location of the metalayers.
 
-* git://git.yoctoproject.org/poky					(branch: dunfell)
-* https://source.denx.de/denx/meta-mainline-common.git			(branch: dunfell-3.1)
+* git://git.yoctoproject.org/poky					(branch: dunfell or kirkstone)
+* https://source.denx.de/denx/meta-mainline-common.git			(branch: dunfell or kirkstone)
 
 Additional optional layers handled by means of dynamic layers:
-* https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: dunfell-3.1)
-* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: dunfell-3.1)
-* https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: dunfell-3.1)
-* https://source.denx.de/denx/meta-mainline-graphics.git		(branch: dunfell-3.1)
-* https://github.com/openembedded/meta-openembedded.git			(branch: dunfell)
-* git://git.openembedded.org/meta-python2				(branch: dunfell)
+* https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: dunfell-3.1 or kirkstone)
+* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git    	(branch: dunfell or kirkstone)
+* https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: dunfell or kirkstone)
+* https://source.denx.de/denx/meta-mainline-graphics.git		(OE dunfell only, branch: dunfell-3.1)
+* https://github.com/openembedded/meta-openembedded.git			(branch: dunfell or kirkstone)
+* git://git.openembedded.org/meta-python2				(branch: dunfell or kirkstone)
 * https://github.com/meta-qt5/meta-qt5.git				(branch: master)
-* https://github.com/kraj/meta-clang					(branch: dunfell)
+* https://github.com/kraj/meta-clang					(branch: dunfell or kirkstone)
 * https://github.com/OSSystems/meta-browser.git				(branch: master)
-* git://git.yoctoproject.org/meta-security				(branch: dunfell)
-* https://github.com/Igalia/meta-webkit.git				(branch: dunfell)
+* git://git.yoctoproject.org/meta-security				(branch: dunfell or kirkstone)
+* https://github.com/Igalia/meta-webkit.git				(branch: dunfell or kirkstone)
 * https://github.com/cazfi/meta-games.git				(branch: master)
 
 With all the source artifacts in place, proceed with setting up the build
