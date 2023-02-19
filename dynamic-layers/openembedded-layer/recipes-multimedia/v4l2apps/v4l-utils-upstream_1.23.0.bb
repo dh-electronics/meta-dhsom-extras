@@ -31,6 +31,9 @@ SRC_URI = "\
     file://0002-original-patch-mediactl-pkgconfig.patch \
     file://0003-original-patch-export-mediactl-headers.patch \
     file://0004-Do-not-use-getsubopt.patch \
+    file://0005-v4l2-ctl-Add-routing-and-streams-support.patch \
+    file://0006-media-ctl-add-support-for-routes-and-streams.patch \
+    file://0007-v4l2-ctl-compliance-add-routing-and-streams-multiple.patch \
 "
 
 SRCREV = "9431e4b26b4842d1401e80ada9f14593dca3a94c"
