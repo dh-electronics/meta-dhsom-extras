@@ -13,7 +13,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	${@'dstat' if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else 'dool'} htop \
 	libqmi libmbim \
 	uhubctl \
-	cpufrequtils \
+	cpupower \
 	can-utils \
 	devmem2 \
 	iperf3 \
