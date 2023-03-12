@@ -84,6 +84,7 @@ Note that MACHINE must be either of:
 
 * dh-imx6-dhcom-pdk2		(depends on: meta-dhsom-imx-bsp)
 * dh-imx8mp-dhcom-pdk2		(depends on: meta-dhsom-imx-bsp)
+* dh-imx8mp-dhcom-pdk3		(depends on: meta-dhsom-imx-bsp)
 * dh-stm32mp1-dhcom-drc02	(depends on: meta-dhsom-stm32-bsp)
 * dh-stm32mp1-dhcom-pdk2	(depends on: meta-dhsom-stm32-bsp)
 * dh-stm32mp1-dhcom-picoitx	(depends on: meta-dhsom-stm32-bsp)
