@@ -18,6 +18,8 @@ SRC_URI:dh-stm32mp1-dhsom:append = " file://qt5-eglfs-kms.json"
 
 SRC_URI:dh-imx6-dhsom:append = " file://qt5-eglfs-kms.json"
 
+SRC_URI:dh-imx6ull-dhsom:append = " file://qt5-eglfs-kms.json"
+
 SRC_URI:dh-imx8mp-dhsom:append = " \
 	file://qt5-eglfs-kms-dsi.json \
 	file://qt5-eglfs-kms-hdmi.json \
