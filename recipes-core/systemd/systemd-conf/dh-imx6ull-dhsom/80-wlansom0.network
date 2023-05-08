@@ -1,0 +1,4 @@
+[Match]
+Path=platform-2190000.mmc
+[Network]
+DHCP=yes
