@@ -1,1 +1,1 @@
-PACKAGECONFIG:dh-dhsom = " surfaceless "
+PACKAGECONFIG:dh-dhsom ?= " surfaceless "
