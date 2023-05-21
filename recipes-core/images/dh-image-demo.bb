@@ -12,7 +12,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	\
 	iw iproute2 ethtool \
 	\
-	libdrm mesa \
+	libdrm libdrm-mainline-tests mesa \
 	libegl-mesa libgbm libgles1-mesa libgles2-mesa \
 	libglapi mesa-megadriver \
 	\
