@@ -15,7 +15,7 @@ SRC_URI = " \
 S = "${WORKDIR}"
 B = "${WORKDIR}/${BPN}-${PV}"
 
-inherit qmake5
+inherit qmake5 systemd
 
 EXTRA_QMAKEVARS_PRE += "target.path=${libdir}/${P}"
 
@@ -24,29 +24,28 @@ do_install:append() {
 	install -m 0755 ${B}/minimal ${D}${bindir}/qtwebengine-minimal
 }
 
+# Add package to automatically start the web browser
+PACKAGES =+ "${PN}-auto"
+
 FILES:${PN} += "${libdir}/${P}"
-RDEPENDS:${PN} += "\
-	qtdeclarative-qmlplugins \
-	ttf-dejavu-sans \
-	ttf-dejavu-sans-mono \
-	ttf-dejavu-sans-condensed \
-	ttf-dejavu-serif \
-	ttf-dejavu-serif-condensed \
-	"
+FILES:${PN} += "${systemd_unitdir}/system/qtwebengine-minimal.service"
 
 FILES:${PN}-dbg += "${libdir}/${P}/.debug"
 
-# Add package to automatically start the web browser
-PACKAGES =+ "${PN}-auto"
+RDEPENDS:${PN} += "\
+	qtdeclarative-qmlplugins \
+	ttf-dejavu-sans \
+	ttf-dejavu-sans-condensed \
+	ttf-dejavu-sans-mono \
+	ttf-dejavu-serif \
+	ttf-dejavu-serif-condensed \
+	"
 
 do_install:append() {
 	install -d ${D}${systemd_unitdir}/system
 	install -m 0644 ${WORKDIR}/qtwebengine-minimal.service ${D}${systemd_unitdir}/system/
 }
 
-inherit systemd
-
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_AUTO_ENABLE = "disable"
 SYSTEMD_SERVICE:${PN} = "qtwebengine-minimal.service"
-FILES:${PN} += "${systemd_unitdir}/system/qtwebengine-minimal.service"
