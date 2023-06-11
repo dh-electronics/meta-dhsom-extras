@@ -1,0 +1,29 @@
+From bf264f9d62c5220125faaed22c3dc3169f981e31 Mon Sep 17 00:00:00 2001
+From: Marek Vasut <marex@denx.de>
+Date: Sun, 11 Jun 2023 22:22:36 +0200
+Subject: [PATCH 2/2] kmssink: Add ST STM32 LTDC auto-detection
+
+Add STM32 LTDC controller into list of auto-detected modules.
+
+Upstream-Status: Pending
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+ sys/kms/gstkmssink.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+index 923e729861..4d1f00990d 100644
+--- a/sys/kms/gstkmssink.c
++++ b/sys/kms/gstkmssink.c
+@@ -175,7 +175,7 @@ kms_open (gchar ** driver)
+ {
+   static const char *drivers[] = { "i915", "radeon", "nouveau", "vmwgfx",
+     "exynos", "amdgpu", "imx-drm", "imx-lcdif", "rockchip", "atmel-hlcdc",
+-    "msm", "xlnx", "vc4", "meson", "sun4i-drm", "mxsfb-drm",
++    "msm", "xlnx", "vc4", "meson", "stm", "sun4i-drm", "mxsfb-drm",
+     "xilinx_drm",               /* DEPRECATED. Replaced by xlnx */
+   };
+   int i, fd = -1;
+-- 
+2.39.2
+
