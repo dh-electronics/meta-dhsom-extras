@@ -1,4 +1,4 @@
 [Match]
-Path=platform-soc-amba-48004000.sdmmc
+Path=platform-soc-amba-48004000.mmc platform-soc-amba-48004000.sdmmc
 [Link]
 Name=wlansom0
