@@ -22,7 +22,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	weston weston-init weston-examples kmscube \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland', '', d)} \
 	\
-	piglit stress-ng \
+	stress-ng \
 	\
 	minicom screen \
 	"
