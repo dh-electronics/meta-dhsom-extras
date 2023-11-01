@@ -5,7 +5,7 @@ Subject: [PATCH 2/2] kmssink: Add ST STM32 LTDC auto-detection
 
 Add STM32 LTDC controller into list of auto-detected modules.
 
-Upstream-Status: Pending
+Upstream-Status: Backport [f18e30cf3bc86427dbe93f1fb48f5af733b41c66]
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
  sys/kms/gstkmssink.c | 2 +-

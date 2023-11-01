@@ -5,7 +5,7 @@ Subject: [PATCH 1/2] kmssink: Add NXP i.MX8M Plus LCDIFv3 auto-detection
 
 Add i.MX8M Plus LCDIFv3 controller into list of auto-detected modules.
 
-Upstream-Status: Pending
+Upstream-Status: Backport [b8b53cafcffe3489d256b1e37c1c46ef304afab4]
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
  sys/kms/gstkmssink.c | 4 ++--
