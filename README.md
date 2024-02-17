@@ -32,15 +32,16 @@ location of the metalayers.
 
 Additional optional layers handled by means of dynamic layers:
 * https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: dunfell-3.1 or kirkstone)
-* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git    	(branch: dunfell or kirkstone)
+* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: dunfell or kirkstone)
 * https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: dunfell or kirkstone)
-* https://source.denx.de/denx/meta-mainline-graphics.git		(OE dunfell only, branch: dunfell-3.1)
 * https://github.com/openembedded/meta-openembedded.git			(branch: dunfell or kirkstone)
-* git://git.openembedded.org/meta-python2				(branch: dunfell or kirkstone)
+* https://git.openembedded.org/meta-python2				(branch: dunfell or kirkstone)
+* https://github.com/meta-flutter/meta-flutter.git			(branch: kirkstone)
 * https://github.com/meta-qt5/meta-qt5.git				(branch: master)
+* https://code.qt.io/yocto/meta-qt6.git					(branch: dunfell or kirkstone)
 * https://github.com/kraj/meta-clang					(branch: dunfell or kirkstone)
 * https://github.com/OSSystems/meta-browser.git				(branch: master)
-* git://git.yoctoproject.org/meta-security				(branch: dunfell or kirkstone)
+* https://git.yoctoproject.org/meta-security				(branch: dunfell or kirkstone)
 * https://github.com/Igalia/meta-webkit.git				(branch: dunfell or kirkstone)
 * https://github.com/cazfi/meta-games.git				(branch: master)
 
@@ -59,14 +60,13 @@ BBLAYERS ?= " \
   /path/to/OE/meta-openembedded/meta-perl \
   /path/to/OE/meta-openembedded/meta-python \
   /path/to/OE/meta-openembedded/meta-webserver \
-  /path/to/OE/meta-qt5 \
+  /path/to/OE/meta-qt6 \
   /path/to/OE/meta-clang \
   /path/to/OE/meta-browser/meta-chromium \
   /path/to/OE/meta-security \
   /path/to/OE/meta-webkit \
   /path/to/OE/meta-games \
   /path/to/OE/meta-mainline-common \
-  /path/to/OE/meta-mainline-graphics \
   /path/to/OE/meta-dhsom-imx-bsp \
   /path/to/OE/meta-dhsom-stm32-bsp \
   /path/to/OE/meta-dhsom-extras \
@@ -139,10 +139,10 @@ BB_DISKMON_DIRS = "\
     STOPTASKS,${DL_DIR},1G,100K \
     STOPTASKS,${SSTATE_DIR},1G,100K \
     STOPTASKS,/tmp,100M,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K \
-    ABORT,/tmp,10M,1K"
+    HALT,${TMPDIR},100M,1K \
+    HALT,${DL_DIR},100M,1K \
+    HALT,${SSTATE_DIR},100M,1K \
+    HALT,/tmp,10M,1K"
 PACKAGECONFIG:append:pn-qemu-native = " sdl"
 PACKAGECONFIG:append:pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
@@ -166,14 +166,13 @@ BBLAYERS ?= " \
 	/path/to/OE/meta-openembedded/meta-perl \
 	/path/to/OE/meta-openembedded/meta-python \
 	/path/to/OE/meta-openembedded/meta-webserver \
-	/path/to/OE/meta-qt5 \
+	/path/to/OE/meta-qt6 \
 	/path/to/OE/meta-clang \
 	/path/to/OE/meta-browser/meta-chromium \
 	/path/to/OE/meta-security \
 	/path/to/OE/meta-webkit \
 	/path/to/OE/meta-games \
 	/path/to/OE/meta-mainline-common \
-	/path/to/OE/meta-mainline-graphics \
 	/path/to/OE/meta-dhsom-imx-bsp \
 	/path/to/OE/meta-dhsom-stm32-bsp \
 	/path/to/OE/meta-dhsom-extras \
