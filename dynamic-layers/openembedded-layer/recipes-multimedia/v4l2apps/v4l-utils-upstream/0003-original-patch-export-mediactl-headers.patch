@@ -3,6 +3,8 @@ From: Khem Raj <raj.khem@gmail.com>
 Date: Sun, 1 Mar 2015 22:25:07 +0000
 Subject: [PATCH] %% original patch: export-mediactl-headers.patch
 
+Signed-off-by: Marek Vasut <marex@denx.de>
+Upstream-Status: Pending
 ---
  utils/media-ctl/Makefile.am | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
