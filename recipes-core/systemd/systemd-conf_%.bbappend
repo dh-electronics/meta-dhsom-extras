@@ -8,13 +8,6 @@ SRC_URI:append:dh-dhsom = " \
 	  " file://80-etnaviv-devcoredump.rules file://etnaviv-devcoredump ", "",d)} \
 	"
 
-SRC_URI:append:dh-stm32mp1-dhsom = " \
-	file://80-ethsom1.link \
-	file://80-ethsom1.network \
-	file://80-wlansom0.link \
-	file://80-wlansom0.network \
-	"
-
 SRC_URI:append:dh-imx6ull-dhsom = " \
 	file://80-ethsom1.link \
 	file://80-ethsom1.network \
@@ -27,6 +20,17 @@ SRC_URI:append:dh-imx8mp-dhsom = " \
 	file://80-ethsom1.network \
 	file://80-wlansom0.link \
 	file://80-wlansom0.network \
+	"
+
+SRC_URI:append:dh-stm32mp1-dhsom = " \
+	file://80-ethsom1.link \
+	file://80-ethsom1.network \
+	file://80-wlansom0.link \
+	file://80-wlansom0.network \
+	"
+
+SRC_URI:append:dh-stm32mp1-dhcor-avenger96 = " \
+	file://logind-powerkey.conf \
 	"
 
 SRC_URI:append:dh-stm32mp1-dhcom-drc02 = " \
@@ -89,16 +93,14 @@ do_install:append:dh-stm32mp1-dhcom-drc02() {
 			  ${D}${systemd_unitdir}/network/80-ethusb0.network
 }
 
+do_install:append:dh-stm32mp1-dhcor-avenger96() {
+	install -D -m0644 ${WORKDIR}/logind-powerkey.conf \
+			  ${D}${systemd_unitdir}/logind.conf.d/01-${PN}.conf
+}
+
 FILES:${PN}:append:dh-dhsom = " \
 	*/udev/rules.d/*.rules \
 	*/*/udev/rules.d/*.rules \
 	${@bb.utils.contains("IMAGE_FEATURES", "debug-tweaks", \
 	  " ${bindir}/etnaviv-devcoredump ", "",d)} \
 	"
-
-SRC_URI:append:dh-stm32mp1-dhcor-avenger96 = " file://logind-powerkey.conf "
-
-do_install:append:dh-stm32mp1-dhcor-avenger96() {
-	install -D -m0644 ${WORKDIR}/logind-powerkey.conf \
-			  ${D}${systemd_unitdir}/logind.conf.d/01-${PN}.conf
-}
