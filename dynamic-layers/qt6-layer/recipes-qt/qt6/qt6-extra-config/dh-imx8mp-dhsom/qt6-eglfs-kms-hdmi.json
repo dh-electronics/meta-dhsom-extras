@@ -1,0 +1,11 @@
+{
+  "device": "/dev/dri/by-path/platform-32fc6000.display-controller-card",
+  "hwcursor": false,
+  "pbuffers": false,
+  "outputs": [
+    {
+      "name": "HDMI1",
+      "mode": "auto"
+    }
+  ]
+}
