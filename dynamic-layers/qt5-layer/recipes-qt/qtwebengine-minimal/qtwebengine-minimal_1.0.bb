@@ -1,7 +1,7 @@
 SUMMARY = "QtWebEngine minimal example"
 DESCRIPTION = "QtWebEngine widget without chrome."
-LICENSE = "GPL-2.0"
-LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=39;md5=d139fbbbd23353243a547b523bc244ee"
+LICENSE = "${@'GPL-2.0' if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else 'GPL-2.0-only'}"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0${@'' if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else '-only'};md5=801f80980d171dd6425610833a22dbe6"
 DEPENDS = "qtwebengine"
 
 SRC_URI = " \
