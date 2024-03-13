@@ -7,12 +7,6 @@ DH_SRC_URI_KIRKSTONE = " \
 	file://0004-hwclock-fix-return-value-on-successful-param-get.patch \
 	"
 
-DH_SRC_URI_DUNFELL = " \
-	file://0005-include-c-add-USAGE_ARGUMENT.patch \
-	file://0006-docs-improve-size-arguments-description-in-help-outp.patch \
-	"
-
 SRC_URI:append:dh-dhsom = " \
-	${@d.getVar('DH_SRC_URI_KIRKSTONE') if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell", "kirkstone"]) else ''} \
-	${@d.getVar('DH_SRC_URI_DUNFELL') if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else ''} \
+	${@d.getVar('DH_SRC_URI_KIRKSTONE') if (d.getVar('LAYERSERIES_CORENAMES') in ["kirkstone"]) else ''} \
 	"

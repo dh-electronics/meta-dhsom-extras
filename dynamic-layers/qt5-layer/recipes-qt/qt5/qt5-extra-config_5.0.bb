@@ -1,6 +1,6 @@
 SUMMARY = "Extra configuration files for qt5"
-LICENSE = "${@'LGPLv2.1' if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else 'LGPL-2.1-only'}"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/LGPL-2.1${@'' if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell"]) else '-only'};md5=1a6d268fd218675ffea8be556788b780"
+LICENSE = "LGPL-2.1-only"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/LGPL-2.1-only;md5=1a6d268fd218675ffea8be556788b780"
 
 EXCLUDE_FROM_SHLIBS = "1"
 INHIBIT_DEFAULT_DEPS = "1"

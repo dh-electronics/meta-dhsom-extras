@@ -6,5 +6,5 @@ DH_SRC_URI_KIRKSTONE = " \
 	"
 
 SRC_URI:append:dh-dhsom = " \
-	${@d.getVar('DH_SRC_URI_KIRKSTONE') if (d.getVar('LAYERSERIES_CORENAMES') in ["dunfell", "kirkstone"]) else ''} \
+	${@d.getVar('DH_SRC_URI_KIRKSTONE') if (d.getVar('LAYERSERIES_CORENAMES') in ["kirkstone"]) else ''} \
 	"
