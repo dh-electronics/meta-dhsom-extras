@@ -38,7 +38,7 @@ Additional optional layers handled by means of dynamic layers:
 * https://git.openembedded.org/meta-python2				(branch: dunfell or kirkstone)
 * https://github.com/meta-flutter/meta-flutter.git			(branch: kirkstone)
 * https://github.com/meta-qt5/meta-qt5.git				(branch: master)
-* https://code.qt.io/yocto/meta-qt6.git					(branch: dunfell or kirkstone)
+* https://code.qt.io/yocto/meta-qt6.git					(branch: 6.5)
 * https://github.com/kraj/meta-clang					(branch: dunfell or kirkstone)
 * https://github.com/OSSystems/meta-browser.git				(branch: master)
 * https://git.yoctoproject.org/meta-security				(branch: dunfell or kirkstone)
