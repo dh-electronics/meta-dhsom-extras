@@ -28,12 +28,12 @@ below shall be checked out. The examples below will use /path/to/OE/ as a
 location of the metalayers.
 
 * git://git.yoctoproject.org/poky					(branch: dunfell or kirkstone)
-* https://source.denx.de/denx/meta-mainline-common.git			(branch: dunfell or kirkstone)
+* https://source.denx.de/denx/meta-mainline-common.git			(branch: main)
 
 Additional optional layers handled by means of dynamic layers:
-* https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: dunfell-3.1 or kirkstone)
-* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: dunfell or kirkstone)
-* https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: dunfell or kirkstone)
+* https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: main)
+* https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: main)
+* https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: main)
 * https://github.com/openembedded/meta-openembedded.git			(branch: dunfell or kirkstone)
 * https://git.openembedded.org/meta-python2				(branch: dunfell or kirkstone)
 * https://github.com/meta-flutter/meta-flutter.git			(branch: kirkstone)
