@@ -18,6 +18,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	\
 	gstreamer1.0 gstreamer1.0-plugins-base \
 	gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
+	gdk-pixbuf-loader-bmp \
 	\
 	weston weston-init weston-examples kmscube \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland', '', d)} \
