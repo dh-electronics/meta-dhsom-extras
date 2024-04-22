@@ -10,7 +10,7 @@ Dependencies
 This layer depends on:
 
 * URI: git://git.yoctoproject.org/poky
-  - branch: dunfell or kirkstone
+  - branch: dunfell or kirkstone or scarthgap
   - layers: meta
 
 Building image
@@ -21,28 +21,29 @@ Yocto Project wiki.
 
 * https://docs.yoctoproject.org/dunfell/
 * https://docs.yoctoproject.org/kirkstone/
+* https://docs.yoctoproject.org/scarthgap/
 
 Before attempting the build, the following metalayer git repositories shall
 be cloned into a location accessible to the build system and a branch listed
 below shall be checked out. The examples below will use /path/to/OE/ as a
 location of the metalayers.
 
-* git://git.yoctoproject.org/poky					(branch: dunfell or kirkstone)
+* git://git.yoctoproject.org/poky					(branch: dunfell or kirkstone or scarthgap)
 * https://source.denx.de/denx/meta-mainline-common.git			(branch: main)
 
 Additional optional layers handled by means of dynamic layers:
 * https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: main)
 * https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git		(branch: main)
 * https://github.com/dh-electronics/meta-dhsom-extras.git		(branch: main)
-* https://github.com/openembedded/meta-openembedded.git			(branch: dunfell or kirkstone)
-* https://git.openembedded.org/meta-python2				(branch: dunfell or kirkstone)
+* https://github.com/openembedded/meta-openembedded.git			(branch: dunfell or kirkstone or scarthgap)
+* https://git.openembedded.org/meta-python2				(branch: dunfell or kirkstone or scarthgap)
 * https://github.com/meta-flutter/meta-flutter.git			(branch: kirkstone)
 * https://github.com/meta-qt5/meta-qt5.git				(branch: master)
 * https://code.qt.io/yocto/meta-qt6.git					(branch: 6.5)
-* https://github.com/kraj/meta-clang					(branch: dunfell or kirkstone)
+* https://github.com/kraj/meta-clang					(branch: dunfell or kirkstone or scarthgap)
 * https://github.com/OSSystems/meta-browser.git				(branch: master)
-* https://git.yoctoproject.org/meta-security				(branch: dunfell or kirkstone)
-* https://github.com/Igalia/meta-webkit.git				(branch: dunfell or kirkstone)
+* https://git.yoctoproject.org/meta-security				(branch: dunfell or kirkstone or scarthgap)
+* https://github.com/Igalia/meta-webkit.git				(branch: dunfell or kirkstone or scarthgap)
 * https://github.com/cazfi/meta-games.git				(branch: master)
 
 With all the source artifacts in place, proceed with setting up the build
