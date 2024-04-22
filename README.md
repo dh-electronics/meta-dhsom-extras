@@ -94,6 +94,7 @@ Note that MACHINE must be either of:
 * dh-stm32mp1-dhcor-avenger96	(depends on: meta-dhsom-stm32-bsp)
 * dh-stm32mp1-dhcor-drc-compact	(depends on: meta-dhsom-stm32-bsp)
 * dh-stm32mp1-dhcor-testbench	(depends on: meta-dhsom-stm32-bsp)
+* dh-stm32mp13-dhcor-dhsbc	(depends on: meta-dhsom-stm32-bsp)
 
 Adapt the suffixes of all the files and names of directories further in
 this documentation according to MACHINE.
