@@ -1,0 +1,4 @@
+[Match]
+Path=platform-soc-amba-58005000.mmc
+[Network]
+DHCP=yes
