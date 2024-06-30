@@ -9,7 +9,7 @@ Dependencies
 
 This layer depends on:
 
-* URI: git://git.yoctoproject.org/poky
+* URI: https://git.yoctoproject.org/poky
   - branch: kirkstone or scarthgap
   - layers: meta
 
@@ -27,7 +27,7 @@ be cloned into a location accessible to the build system and a branch listed
 below shall be checked out. The examples below will use /path/to/OE/ as a
 location of the metalayers.
 
-* git://git.yoctoproject.org/poky					(branch: kirkstone or scarthgap)
+* https://git.yoctoproject.org/poky					(branch: kirkstone or scarthgap)
 * https://source.denx.de/denx/meta-mainline-common.git			(branch: main)
 
 Additional optional layers handled by means of dynamic layers:
