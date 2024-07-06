@@ -82,6 +82,7 @@ DISTRO = "dhlinux"
 
 Note that MACHINE must be either of:
 
+* dh-imx6-dhcom-drc02		(depends on: meta-dhsom-imx-bsp)
 * dh-imx6-dhcom-pdk2		(depends on: meta-dhsom-imx-bsp)
 * dh-imx6-dhcom-picoitx		(depends on: meta-dhsom-imx-bsp)
 * dh-imx6ull-dhcom-drc02	(depends on: meta-dhsom-imx-bsp)
