@@ -36,6 +36,10 @@ SRC_URI:append:dh-stm32mp13-dhsom = " \
 	file://80-wlansom0.network \
 	"
 
+SRC_URI:append:dh-stm32mp13-dhcor-dhsbc = " \
+	file://80-phy-dhsbc.rules \
+	"
+
 SRC_URI:append:dh-stm32mp1-dhcor-avenger96 = " \
 	file://logind-powerkey.conf \
 	"
@@ -102,6 +106,11 @@ do_install:append:dh-imx8mp-dhsom() {
 			  ${D}${systemd_unitdir}/network/80-wlansom0.link
 	install -D -m0644 ${WORKDIR}/80-wlansom0.network \
 			  ${D}${systemd_unitdir}/network/80-wlansom0.network
+}
+
+do_install:append:dh-stm32mp13-dhcor-dhsbc() {
+	install -D -m0644 ${WORKDIR}/80-phy-dhsbc.rules \
+			  ${D}${sysconfdir}/udev/rules.d/80-phy-dhsbc.rules
 }
 
 do_install:append:dh-stm32mp1-dhcom-drc02() {
