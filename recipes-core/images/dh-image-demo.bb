@@ -10,7 +10,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	systemd-conf ca-certificates openssl-engines rng-tools \
 	mtd-utils i2c-tools e2fsprogs-resize2fs \
 	\
-	iw iproute2 ethtool pciutils \
+	iw iproute2 ethtool pciutils usbutils \
 	\
 	libdrm libdrm-mainline-tests mesa \
 	libegl-mesa libgbm libgles1-mesa libgles2-mesa \
