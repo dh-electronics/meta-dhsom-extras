@@ -1,5 +1,5 @@
 IMAGE_INSTALL:append:dh-dhsom = " \
-	flutter-auto \
+	ivi-homescreen \
 	flutter-pi \
-	packagegroup-flutter-test-apps \
+	flutter-samples-material-3-demo \
 	"
