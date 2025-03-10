@@ -1,4 +1,4 @@
 [Match]
-Path=platform-soc-amba-58005000.mmc
+Path=platform-soc-amba-58005000.mmc platform-5c007000.bus-amba-58005000.mmc
 [Link]
 Name=wlansom0

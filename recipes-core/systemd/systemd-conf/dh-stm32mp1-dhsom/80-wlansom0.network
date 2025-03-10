@@ -1,4 +1,4 @@
 [Match]
-Path=platform-soc-amba-48004000.mmc platform-soc-amba-48004000.sdmmc
+Path=platform-soc-amba-48004000.mmc platform-soc-amba-48004000.sdmmc platform-5c007000.bus-amba-48004000.mmc
 [Network]
 DHCP=yes
