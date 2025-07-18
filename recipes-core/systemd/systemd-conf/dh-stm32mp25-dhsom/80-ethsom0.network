@@ -1,0 +1,4 @@
+[Match]
+Path=platform-482c0000.eth*
+[Network]
+DHCP=yes
