@@ -9,7 +9,7 @@ INHIBIT_PACKAGE_STRIP = "1"
 
 SRC_URI:append = " file://qt5-eglfs.sh"
 
-SRC_URI:dh-stm32mp1-dhsom:append = " file://qt5-eglfs-kms.json"
+SRC_URI:dh-stm32mp-dhsom:append = " file://qt5-eglfs-kms.json"
 
 SRC_URI:dh-imx6-dhsom:append = " file://qt5-eglfs-kms.json"
 
