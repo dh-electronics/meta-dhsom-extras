@@ -38,6 +38,7 @@ SRC_URI:append:dh-stm32mp13-dhsom = " \
 
 SRC_URI:append:dh-stm32mp13-dhcor-dhsbc = " \
 	file://80-phy-dhsbc.rules \
+	file://logind-powerkey.conf \
 	"
 
 SRC_URI:append:dh-stm32mp1-dhcor-avenger96 = " \
@@ -119,6 +120,8 @@ do_install:append:dh-imx8mp-dhsom() {
 do_install:append:dh-stm32mp13-dhcor-dhsbc() {
 	install -D -m0644 ${WORKDIR}/80-phy-dhsbc.rules \
 			  ${D}${sysconfdir}/udev/rules.d/80-phy-dhsbc.rules
+	install -D -m0644 ${WORKDIR}/logind-powerkey.conf \
+			  ${D}${systemd_unitdir}/logind.conf.d/01-${PN}.conf
 }
 
 do_install:append:dh-stm32mp1-dhcom-drc02() {
