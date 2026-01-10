@@ -26,6 +26,9 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	stress-ng \
 	\
 	minicom screen \
+	\
+	${@'bmap-tools' if (d.getVar('LAYERSERIES_CORENAMES') in ["kirkstone"]) else 'bmaptool'} \
+	zstd \
 	"
 
 IMAGE_FEATURES:append:dh-dhsom = " \
