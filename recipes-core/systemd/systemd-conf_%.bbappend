@@ -9,7 +9,7 @@ SRC_URI:append:dh-dhsom = " \
 	file://80-rtc-dhsom.rules \
 	file://80-ethsom0.link \
 	file://80-ethsom0.network \
-	${@bb.utils.contains("IMAGE_FEATURES", "debug-tweaks", \
+	${@bb.utils.contains("IMAGE_FEATURES", "post-install-logging", \
 	  " file://80-etnaviv-devcoredump.rules file://etnaviv-devcoredump ", "",d)} \
 	"
 
@@ -70,7 +70,7 @@ do_install:append:dh-dhsom() {
 			  ${D}${systemd_unitdir}/network/80-ethsom0.link
 	install -D -m0644 ${UNPACKDIR}/80-ethsom0.network \
 			  ${D}${systemd_unitdir}/network/80-ethsom0.network
-	if ${@bb.utils.contains('IMAGE_FEATURES', 'debug-tweaks', 'true', 'false', d )} ; then
+	if ${@bb.utils.contains('IMAGE_FEATURES', 'post-install-logging', 'true', 'false', d )} ; then
 		install -D -m0644 ${UNPACKDIR}/80-etnaviv-devcoredump.rules \
 			  ${D}${sysconfdir}/udev/rules.d/80-etnaviv-devcoredump.rules
 		install -D -m0755 ${UNPACKDIR}/etnaviv-devcoredump \
@@ -157,6 +157,6 @@ do_install:append:dh-stm32mp2-dhsom() {
 FILES:${PN}:append:dh-dhsom = " \
 	*/udev/rules.d/*.rules \
 	*/*/udev/rules.d/*.rules \
-	${@bb.utils.contains("IMAGE_FEATURES", "debug-tweaks", \
+	${@bb.utils.contains("IMAGE_FEATURES", "post-install-logging", \
 	  " ${bindir}/etnaviv-devcoredump ", "",d)} \
 	"

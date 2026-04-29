@@ -32,7 +32,8 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	"
 
 IMAGE_FEATURES:append:dh-dhsom = " \
-	dev-pkgs tools-sdk tools-debug tools-profile debug-tweaks \
+	dev-pkgs tools-sdk tools-debug tools-profile \
+	allow-empty-password allow-root-login empty-root-password post-install-logging \
 	ssh-server-dropbear \
 	"
 
