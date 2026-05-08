@@ -1,1 +1,1 @@
-PACKAGECONFIG:append:dh-dhsom = " examples "
+PACKAGECONFIG:append:dh-dhsom = " ${@'examples' if (bb.utils.vercmp_string_op(d.getVar('QT_VERSION'), '6.11.0', '<')) else ''}"
