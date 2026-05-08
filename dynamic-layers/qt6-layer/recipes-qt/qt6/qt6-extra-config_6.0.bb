@@ -21,7 +21,7 @@ SRC_URI:dh-imx8mp-dhsom:append = " \
 	file://qt6-eglfs-kms-lvds.json \
 	"
 
-S = "${WORKDIR}"
+S = "${@d.getVar('WORKDIR') if (d.getVar('LAYERSERIES_CORENAMES') in ['scarthgap']) else d.getVar('UNPACKDIR')}"
 
 inherit allarch
 
@@ -29,8 +29,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 do_install () {
 	install -d ${D}${sysconfdir}/default/
-	install -m 0644 ${WORKDIR}/qt6-eglfs-kms*.json ${D}${sysconfdir}/default/
+	install -m 0644 ${S}/qt6-eglfs-kms*.json ${D}${sysconfdir}/default/
 
 	install -d ${D}${sysconfdir}/profile.d/
-	install -m 0755 ${WORKDIR}/qt6-eglfs.sh ${D}${sysconfdir}/profile.d/
+	install -m 0755 ${S}/qt6-eglfs.sh ${D}${sysconfdir}/profile.d/
 }
