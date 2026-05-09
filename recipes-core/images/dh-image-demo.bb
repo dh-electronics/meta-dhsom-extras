@@ -27,7 +27,7 @@ IMAGE_INSTALL:append:dh-dhsom = " \
 	\
 	minicom screen \
 	\
-	${@'bmap-tools' if (d.getVar('LAYERSERIES_CORENAMES') in ["kirkstone"]) else 'bmaptool'} \
+	bmaptool \
 	zstd \
 	"
 
