@@ -50,7 +50,7 @@ SRC_URI:append:dh-stm32mp1-dhcom-drc02 = " \
 	file://80-ethusb0.network \
 	"
 
-SRC_URI:append:dh-stm32mp25-dhsom = " \
+SRC_URI:append:dh-stm32mp2-dhsom = " \
 	file://80-ethsom1.link \
 	file://80-ethsom1.network \
 	file://80-phy-dhsbc.rules \
@@ -136,7 +136,7 @@ do_install:append:dh-stm32mp1-dhcor-avenger96() {
 			  ${D}${systemd_unitdir}/logind.conf.d/01-${PN}.conf
 }
 
-do_install:append:dh-stm32mp25-dhsom() {
+do_install:append:dh-stm32mp2-dhsom() {
 	install -D -m0644 ${WORKDIR}/80-ethsom1.link \
 			  ${D}${systemd_unitdir}/network/80-ethsom1.link
 	install -D -m0644 ${WORKDIR}/80-ethsom1.network \
