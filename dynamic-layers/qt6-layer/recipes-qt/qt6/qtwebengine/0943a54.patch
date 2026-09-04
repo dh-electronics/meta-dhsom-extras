@@ -1,0 +1,57 @@
+From 0943a548e3da1e44b6e198b028b2cba6e59d7476 Mon Sep 17 00:00:00 2001
+From: Moss Heim <moss.heim@qt.io>
+Date: Mon, 03 Aug 2026 13:49:06 +0200
+Subject: [PATCH] [fixup] Fix QtWebEngine build on all platforms
+
+This target change for GCC was intended to only apply to the FP op
+functions. It's not necessary for exec_stages and just creates a target
+mismatch when GCC attempts to inline that function inside run_program
+below.
+
+Fixes
+
+```
+In file included from ../../../../../sources/qtwebengine-6.11.0/src/3rdparty/chromium/third_party/skia/modules/skcms/src/skcms_TransformBaseline.cc:47:
+../../../../../sources/qtwebengine-6.11.0/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h: In function 'void skcms_private::baseline::run_program(const skcms_private::Op*, const void**, ptrdiff_t, const char*, char*, int, size_t, size_t)':
+../../../../../sources/qtwebengine-6.11.0/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h:1503:13: error: inlining failed in call to 'always_inline' 'void skcms_private::baseline::exec_stages(void (**)(StageList, const void**, const char*, char*, F, F, F, F, int), const void**, const char*, char*, int)': target specific option mismatch
+ 1503 |     SI void exec_stages(StageFn* stages, const void** contexts, const char* src, char* dst, int i) {
+      |             ^~~~~~~~~~~
+../../../../../sources/qtwebengine-6.11.0/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h:1556:20: note: called from here
+ 1556 |         exec_stages(stages, contexts, src, dst, i);
+      |         ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+
+Task-number: QTBUG-144285
+Change-Id: I0d039127be63037ccf93e8763ee354fef1eb9f41
+Reviewed-on: https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/757293
+Reviewed-by: Michal Klocek <michal.klocek@qt.io>
+Upstream-Status: Submitted [https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/757293]
+Signed-off-by: Marek Vasut <marex@nabladev.com>
+---
+
+diff --git a/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h b/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h
+index f3f0194..665fa0d 100644
+--- a/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h
++++ b/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h
+@@ -1503,6 +1503,10 @@
+ #endif
+ }
+ 
++#if defined(__GNUC__) && defined(USING_NEON_F16C) && !(defined(__aarch64__) || defined(__ARM64__) || defined(_M_ARM64))
++#pragma GCC pop_options
++#endif
++
+ #if SKCMS_HAS_MUSTTAIL
+ 
+     SI void exec_stages(StageFn* stages, const void** contexts, const char* src, char* dst, int i) {
+@@ -1528,10 +1532,6 @@
+ 
+ #endif
+ 
+-#if defined(__GNUC__) && defined(USING_NEON_F16C) && !(defined(__aarch64__) || defined(__ARM64__) || defined(_M_ARM64))
+-#pragma GCC pop_options
+-#endif
+-
+ // NOLINTNEXTLINE(misc-definitions-in-headers)
+ void run_program(const Op* program, const void** contexts, SKCMS_MAYBE_UNUSED ptrdiff_t programSize,
+                  const char* src, char* dst, int n,
