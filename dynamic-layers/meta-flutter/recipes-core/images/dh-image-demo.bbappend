@@ -1,5 +1,5 @@
 IMAGE_INSTALL:append:dh-dhsom = " \
 	flutter-auto \
 	flutter-pi \
-	packagegroup-flutter-test-apps \
+	packagegroup-meta-flutter-tests \
 	"
