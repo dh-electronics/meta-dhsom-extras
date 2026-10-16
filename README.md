@@ -32,7 +32,7 @@ location of the metalayers.
 
 * https://git.openembedded.org/bitbake					(branch: 2.8 or 2.18)
 * https://git.openembedded.org/openembedded-core			(branch: scarthgap or wrynose)
-* https://source.denx.de/denx/meta-mainline-common.git			(branch: main)
+* https://codeberg.org/marekv/meta-mainline-common.git			(branch: main)
 
 Additional optional layers handled by means of dynamic layers:
 * https://github.com/dh-electronics/meta-dhsom-imx-bsp.git		(branch: main)
